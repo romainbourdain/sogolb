@@ -36,7 +36,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       <div className="w-full flex justify-end p-3">
         <Button size="sm">
           <Pen className="mr-2" size={16} />
-          Edit
+          Modifier
         </Button>
       </div>
 
