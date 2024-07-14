@@ -1,9 +1,9 @@
 import {
   Book,
+  BookOpen,
   Bookmark,
   Code,
   Compass,
-  File,
   GraduationCap,
   Home,
   Newspaper,
@@ -27,7 +27,7 @@ export const SidebarContent = () => (
       <SidebarLink icon={GraduationCap} href="/formations">
         Formations
       </SidebarLink>
-      <SidebarLink icon={File} href="/lessons">
+      <SidebarLink icon={BookOpen} href="/lessons">
         Leçons
       </SidebarLink>
       <SidebarLink icon={Code} href="/projects">
