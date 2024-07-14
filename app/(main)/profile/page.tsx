@@ -8,6 +8,8 @@ import { Pen } from "lucide-react";
 import Image from "next/image";
 
 export default async function RoutePage(props: PageParams<{}>) {
+  // const profile = await getProfile({ id: "clyloqks700007t3lyo187cee" });
+  // console.log(await getMyProfile(null));
   const profile = fake_profile;
   return (
     <PageLayout className="h-full">
@@ -22,7 +24,7 @@ export default async function RoutePage(props: PageParams<{}>) {
           className="h-64 w-full object-cover"
         />
         {/* Picture */}
-        <div className="absolute bottom-0 left-[2%] transform translate-y-1/2">
+        <div className="absolute bottom-0 left-[2%] translate-y-1/2">
           <Avatar className="size-36 border-4 border-black shadow-md">
             <AvatarImage src={profile.image} alt="Profile Image" />
             <AvatarFallback className="text-4xl">
@@ -33,7 +35,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       </div>
 
       {/* Edit button */}
-      <div className="w-full flex justify-end p-3">
+      <div className="flex w-full justify-end p-3">
         <Button size="sm">
           <Pen className="mr-2" size={16} />
           Modifier
@@ -49,7 +51,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       </div>
 
       {/* Separator */}
-      <div className="border-b border-muted-foreground my-6" />
+      <div className="my-6 border-b border-muted-foreground" />
 
       {/* Contents */}
       <div className="mx-5">

@@ -2,7 +2,7 @@
 
 import { signIn, signOut } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { action } from "@/lib/safe-actions";
+import { actionClient } from "@/lib/safe-actions";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { LoginSchema, RegisterSchema } from "../schemas/auth.schema";
 
-export const signInAction = action
+export const signInAction = actionClient
   .schema(z.string().nullable())
   .action(async ({ parsedInput: provider_id }) => {
     try {
@@ -23,7 +23,7 @@ export const signInAction = action
     }
   });
 
-export const signInWithEmailAndPasswordAction = action
+export const signInWithEmailAndPasswordAction = actionClient
   .schema(LoginSchema)
   .action(async ({ parsedInput: { email, password } }) => {
     try {
@@ -49,7 +49,7 @@ export const signInWithEmailAndPasswordAction = action
     }
   });
 
-export const registerAction = action
+export const registerAction = actionClient
   .schema(RegisterSchema)
   .action(async ({ parsedInput: { email, password, name } }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -73,11 +73,11 @@ export const registerAction = action
 
 // TODO: send verification email
 
-export const signOutAction = action.action(async () => {
+export const signOutAction = actionClient.action(async () => {
   await signOut();
 });
 
-export const getUserByIdAction = action
+export const getUserByIdAction = actionClient
   .schema(z.string())
   .action(async ({ parsedInput: id }) => {
     return db.user.findUnique({
@@ -87,7 +87,7 @@ export const getUserByIdAction = action
     });
   });
 
-export const getUserByEmailAction = action
+export const getUserByEmailAction = actionClient
   .schema(z.string())
   .action(async ({ parsedInput: email }) => {
     return db.user.findUnique({
