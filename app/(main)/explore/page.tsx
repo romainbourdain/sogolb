@@ -12,7 +12,7 @@ import { Search } from "lucide-react";
 
 export default async function RoutePage(props: PageParams<{}>) {
   return (
-    <PageLayout className="h-full">
+    <PageLayout className="h-full px-5 md:px-10">
       {/* Search bar */}
       <div className="flex justify-center items-center py-5">
         <div className="relative w-full">
