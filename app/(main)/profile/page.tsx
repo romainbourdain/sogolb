@@ -1,23 +1,26 @@
+import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { fake_profile } from "@/data/profile";
-import { getInitials } from "@/lib/utils";
+import { defaultBanner } from "@/constants";
+import { getDefaultUserName, getInitials } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
 import Image from "next/image";
 
 export default async function RoutePage(props: PageParams<{}>) {
-  // const profile = await getProfile({ id: "clyloqks700007t3lyo187cee" });
-  // console.log(await getMyProfile(null));
-  const profile = fake_profile;
+  const profileData = await getMyProfile();
+  if (!profileData?.data) {
+    throw new Error("Profile data not found");
+  }
+  const profile = profileData.data;
   return (
     <PageLayout className="h-full">
       {/* Headers */}
       <div className="relative mb-5">
         {/* Banner */}
         <Image
-          src={profile.banner}
+          src={profile.banner || defaultBanner}
           alt="Profile Banner"
           width={1920}
           height={1080}
@@ -46,7 +49,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       <div className="mx-5">
         <h1 className="text-2xl font-semibold">{profile.name}</h1>
         <h2 className="text-lg font-light text-muted-foreground">
-          @{profile.userName}
+          @{getDefaultUserName(profile.name)}
         </h2>
       </div>
 

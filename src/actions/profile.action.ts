@@ -17,9 +17,9 @@ export const getProfile = authenticatedActionClient
     return res;
   });
 
-// TODO : implémenter action sans paramètres
 export const getMyProfile = authenticatedActionClient.action(
   async ({ ctx: { id } }) => {
+    if (!id) throw new ActionError();
     const profile = await getProfile({ id });
     if (!profile?.data) {
       throw new ActionError("Profile not found");
