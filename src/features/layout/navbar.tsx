@@ -15,7 +15,7 @@ export const Navbar = ({ showUserButton, showSidebarButton }: NavbarProps) => {
         {showSidebarButton && <MobileSidebar />}
         <Logo />
       </div>
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         <ThemeToggle />
         {showUserButton && <UserButton />}
       </div>
