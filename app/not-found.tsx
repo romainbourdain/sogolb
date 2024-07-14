@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function RouteError({ error, reset }: ErrorParams) {
   return (
-    <PageLayout className="flex h-screen flex-col items-center justify-center gap-3">
+    <PageLayout className="flex h-screen flex-col items-start justify-center gap-3">
       <Typography variant="code">404</Typography>
       <Typography variant="h1">Page not found</Typography>
       <Typography variant="base">
