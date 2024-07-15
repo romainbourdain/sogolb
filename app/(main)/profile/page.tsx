@@ -29,10 +29,13 @@ export default async function RoutePage(props: PageParams<{}>) {
         {/* Picture */}
         <div className="absolute bottom-0 left-[2%] translate-y-1/2">
           <Avatar className="size-36 border-4 border-black shadow-md">
-            <AvatarImage src={profile.image} alt="Profile Image" />
-            <AvatarFallback className="text-4xl">
-              {getInitials(profile.name)}
-            </AvatarFallback>
+            {profile.image ? (
+              <AvatarImage src={profile.image} alt="Profile Image" />
+            ) : (
+              <AvatarFallback className="text-4xl">
+                {getInitials(profile.name || "")}
+              </AvatarFallback>
+            )}
           </Avatar>
         </div>
       </div>
@@ -45,12 +48,30 @@ export default async function RoutePage(props: PageParams<{}>) {
         </Button>
       </div>
 
-      {/* Names */}
-      <div className="mx-5">
-        <h1 className="text-2xl font-semibold">{profile.name}</h1>
-        <h2 className="text-lg font-light text-muted-foreground">
-          @{getDefaultUserName(profile.name)}
-        </h2>
+      {/* More informations */}
+      <div className="mx-5 flex justify-between">
+        {/* Names */}
+        <div>
+          <h1 className="text-2xl font-semibold">{profile.name}</h1>
+          <h2 className="text-lg font-light text-muted-foreground">
+            @{getDefaultUserName(profile.name || "")}
+          </h2>
+        </div>
+
+        {/* Badges */}
+        <div className="flex space-x-2 my-3">
+          {profile.badges.map((badge) => (
+            <div key={badge.id}>
+              <Image
+                src={badge.image}
+                alt={badge.name}
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Separator */}

@@ -7,8 +7,13 @@ import { z } from "zod";
 export const getProfile = authenticatedActionClient
   .schema(z.object({ id: z.string() }))
   .action(async ({ parsedInput: { id } }) => {
-    const res = await db.user.findUnique({ where: { id } });
-
+    const res = await db.user.findUnique({
+      where: { id },
+      include: {
+        badges: true,
+      },
+    });
+    console.log(res);
     if (!res) {
       throw new ActionError("Profile not found");
     }
