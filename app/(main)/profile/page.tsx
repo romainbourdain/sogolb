@@ -1,6 +1,7 @@
 import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { defaultBanner } from "@/constants";
 import { LazyBanner } from "@/features/profile/lazy-banner";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
@@ -64,7 +65,8 @@ export default async function RoutePage(props: PageParams<{}>) {
       </div>
 
       {/* Separator */}
-      <div className="my-6 border-b border-muted-foreground" />
+      {/* <div className="my-6 border-b border-muted-foreground" /> */}
+      <Separator className="my-6" />
 
       {/* Contents */}
       <div className="mx-5">
