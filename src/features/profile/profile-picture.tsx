@@ -10,7 +10,7 @@ const ProfilePicture = ({
   name: string | null;
 }) => {
   return (
-    <Avatar className="size-36 border-4 border-black shadow-md">
+    <Avatar className="size-36 border-4 border-background shadow-md">
       {image ? (
         <AvatarImage src={image} alt="Profile Image" />
       ) : (
