@@ -13,7 +13,6 @@ export const getProfile = authenticatedActionClient
         badges: true,
       },
     });
-    console.log(res);
     if (!res) {
       throw new ActionError("Profile not found");
     }

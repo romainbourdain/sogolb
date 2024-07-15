@@ -1,10 +1,10 @@
 import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { defaultBanner } from "@/constants";
-import Banner from "@/features/profile/banner";
-import { getDefaultUserName, getInitials } from "@/lib/utils";
+import { LazyBanner } from "@/features/profile/lazy-banner";
+import ProfilePicture from "@/features/profile/profile-picture";
+import { getDefaultUserName } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
 import Image from "next/image";
@@ -22,18 +22,10 @@ export default async function RoutePage(props: PageParams<{}>) {
       {/* Headers */}
       <div className="relative mb-5">
         {/* Banner */}
-        <Banner image={profile.banner || defaultBanner} />
+        <LazyBanner image={profile.banner || defaultBanner} />
         {/* Picture */}
         <div className="absolute bottom-0 left-[2%] translate-y-1/2">
-          <Avatar className="size-36 border-4 border-black shadow-md">
-            {profile.image ? (
-              <AvatarImage src={profile.image} alt="Profile Image" />
-            ) : (
-              <AvatarFallback className="text-4xl">
-                {getInitials(profile.name || "")}
-              </AvatarFallback>
-            )}
-          </Avatar>
+          <ProfilePicture image={profile.image} name={profile.name} />
         </div>
       </div>
 
