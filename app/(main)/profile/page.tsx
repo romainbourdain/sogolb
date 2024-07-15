@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
 import { defaultBanner } from "@/constants";
 import { LazyBanner } from "@/features/profile/lazy-banner";
-import ProfilePicture from "@/features/profile/profile-picture";
+import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
 import { getDefaultUserName } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
@@ -25,7 +25,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         <LazyBanner image={profile.banner || defaultBanner} />
         {/* Picture */}
         <div className="absolute bottom-0 left-[2%] translate-y-1/2">
-          <ProfilePicture image={profile.image} name={profile.name} />
+          <LazyProfilePicture image={profile.image} name={profile.name} />
         </div>
       </div>
 
