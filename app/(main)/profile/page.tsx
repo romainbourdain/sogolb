@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/tailwind/page-layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { defaultBanner } from "@/constants";
+import Banner from "@/features/profile/banner";
 import { getDefaultUserName, getInitials } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
@@ -13,19 +14,15 @@ export default async function RoutePage(props: PageParams<{}>) {
   if (!profileData?.data) {
     throw new Error("Profile data not found");
   }
+
   const profile = profileData.data;
+
   return (
     <PageLayout className="h-full">
       {/* Headers */}
       <div className="relative mb-5">
         {/* Banner */}
-        <Image
-          src={profile.banner || defaultBanner}
-          alt="Profile Banner"
-          width={1920}
-          height={1080}
-          className="h-64 w-full object-cover"
-        />
+        <Banner image={profile.banner || defaultBanner} />
         {/* Picture */}
         <div className="absolute bottom-0 left-[2%] translate-y-1/2">
           <Avatar className="size-36 border-4 border-black shadow-md">
