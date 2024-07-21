@@ -15,7 +15,7 @@ export default function RouteError({ error, reset }: ErrorParams) {
       <Typography variant="base">
         Sorry, we couldn't find the page you're looking for.
       </Typography>
-      <Link href="/" className={cn(buttonVariants(), "mt-5")}>
+      <Link href="/home" className={cn(buttonVariants(), "mt-5")}>
         Go back home
       </Link>
     </PageLayout>
