@@ -1,5 +1,3 @@
-// components/ui/resource-card.tsx
-import { Card, CardContent } from "@/components/ui/card";
 import { Typography } from "@/components/ui/typography";
 import { BookOpen, GraduationCap, LucideIcon, Newspaper } from "lucide-react";
 import Image from "next/image";
@@ -26,32 +24,29 @@ export const ResourceCard = ({
 }) => {
   const Icon: LucideIcon = variants[variant].icon;
   return (
-    <Card className="relative rounded-xl border-secondary border-4 aspect-square overflow-hidden size-52">
+    <div
+      className="relative flex flex-col justify-between
+       border-secondary border-4 rounded-xl p-3
+       aspect-square overflow-hidden size-36 md:size-52"
+    >
       {/* Background fallback */}
-      {/* <FaKiwiBird
-        size={150}
-        className="text-primary opacity-10 absolute bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2"
-      /> */}
       <Image
         src={`/${variants[variant].color}-cover.svg`}
         alt="cover"
         layout="fill"
         objectFit="cover"
-        objectPosition="center"
+        className="absolute inset-0 z-[-1]"
       />
 
       {/* Top right icon */}
-      <Icon className="absolute top-0 right-0 transform -translate-x-1/2 translate-y-1/2 text-white" />
+      <div className="flex justify-end items-center w-full">
+        <Icon className="text-white" />
+      </div>
 
-      <CardContent>
-        {/* Title */}
-        <Typography
-          variant="h2"
-          className="font-semibold absolute bottom-0 left-0 p-5 text-white"
-        >
-          {resource.title}
-        </Typography>
-      </CardContent>
-    </Card>
+      {/* Title */}
+      <Typography variant="h2" className="font-semibold text-white text-md">
+        {resource.title}
+      </Typography>
+    </div>
   );
 };
