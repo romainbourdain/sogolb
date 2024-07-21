@@ -7,7 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut } from "lucide-react";
+import { LogOut, User } from "lucide-react";
+import Link from "next/link";
 import type { PropsWithChildren } from "react";
 
 export type UserDropdownProps = PropsWithChildren<{}>;
@@ -17,6 +18,12 @@ export const UserDropdown = ({ children }: UserDropdownProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
+        <Link href="/profile">
+          <DropdownMenuItem>
+            <User size={16} className="mr-2" />
+            Profil
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuItem onClick={() => signOutAction(null)}>
           <LogOut size={16} className="mr-2" />
           Se déconnecter

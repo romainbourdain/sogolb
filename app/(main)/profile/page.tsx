@@ -1,55 +1,72 @@
+import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { fake_profile } from "@/data/profile";
-import { getInitials } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { defaultBanner } from "@/constants";
+import { LazyBanner } from "@/features/profile/lazy-banner";
+import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
+import { getDefaultUserName } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
 import Image from "next/image";
 
 export default async function RoutePage(props: PageParams<{}>) {
-  const profile = fake_profile;
+  const profileData = await getMyProfile();
+  if (!profileData?.data) {
+    throw new Error("Profile data not found");
+  }
+
+  const profile = profileData.data;
+
   return (
     <PageLayout className="h-full">
       {/* Headers */}
       <div className="relative mb-5">
         {/* Banner */}
-        <Image
-          src={profile.banner}
-          alt="Profile Banner"
-          width={1920}
-          height={1080}
-          className="h-64 w-full object-cover"
-        />
+        <LazyBanner image={profile.banner || defaultBanner} />
         {/* Picture */}
-        <div className="absolute bottom-0 left-[2%] transform translate-y-1/2">
-          <Avatar className="size-36 border-4 border-black shadow-md">
-            <AvatarImage src={profile.image} alt="Profile Image" />
-            <AvatarFallback className="text-4xl">
-              {getInitials(profile.name)}
-            </AvatarFallback>
-          </Avatar>
+        <div className="absolute bottom-0 left-[2%] translate-y-1/2">
+          <LazyProfilePicture image={profile.image} name={profile.name} />
         </div>
       </div>
 
       {/* Edit button */}
-      <div className="w-full flex justify-end p-3">
+      <div className="flex w-full justify-end p-3">
         <Button size="sm">
           <Pen className="mr-2" size={16} />
-          Edit
+          Modifier
         </Button>
       </div>
 
-      {/* Names */}
-      <div className="mx-5">
-        <h1 className="text-2xl font-semibold">{profile.name}</h1>
-        <h2 className="text-lg font-light text-muted-foreground">
-          @{profile.userName}
-        </h2>
+      {/* More informations */}
+      <div className="mx-5 flex justify-between">
+        {/* Names */}
+        <div>
+          <h1 className="text-2xl font-semibold">{profile.name}</h1>
+          <h2 className="text-lg font-light text-muted-foreground">
+            @{getDefaultUserName(profile.name || "")}
+          </h2>
+        </div>
+
+        {/* Badges */}
+        <div className="flex space-x-2 my-3">
+          {profile.badges.map((badge) => (
+            <div key={badge.id}>
+              <Image
+                src={badge.image}
+                alt={badge.name}
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Separator */}
-      <div className="border-b border-muted-foreground my-6" />
+      {/* <div className="my-6 border-b border-muted-foreground" /> */}
+      <Separator className="my-6" />
 
       {/* Contents */}
       <div className="mx-5">
