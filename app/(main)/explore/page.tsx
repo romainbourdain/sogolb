@@ -1,12 +1,16 @@
+// "use client";
 import { PageLayout } from "@/components/tailwind/page-layout";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { Typography } from "@/components/ui/typography";
-import { articles } from "@/data/articles";
-import { formations } from "@/data/formations";
-import { lessons } from "@/data/lessons";
-import { ArticleCard } from "@/features/articles/article-card";
-import { FormationCard } from "@/features/formations/formation-card";
-import { LessonCard } from "@/features/lessons/lesson-card";
+import { articles, formations, lessons } from "@/data/resources";
+import { ResourceCard } from "@/features/resource/resource-card";
 import type { PageParams } from "@/types/next";
 import { Search } from "lucide-react";
 
@@ -32,22 +36,38 @@ export default async function RoutePage(props: PageParams<{}>) {
         <Typography variant="h2" className="mb-5 ml-3">
           Articles
         </Typography>
-        <div className="flex gap-4 overflow-hidden">
-          {articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
+        <div className="select-none">
+          <Carousel>
+            <CarouselPrevious />
+            <CarouselContent>
+              {articles.map((article, index) => (
+                <CarouselItem key={index} className="basis-1/4">
+                  <ResourceCard resource={article} variant="article" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
 
       {/* Lessons */}
-      <div className="mt-10 overflow-hidden">
+      <div className="mt-10">
         <Typography variant="h2" className="mb-5 ml-3">
           Leçons
         </Typography>
-        <div className="flex gap-4">
-          {lessons.map((lesson) => (
-            <LessonCard key={lesson.id} lesson={lesson} />
-          ))}
+        <div className="select-none">
+          <Carousel>
+            <CarouselPrevious />
+            <CarouselContent>
+              {lessons.map((lesson, index) => (
+                <CarouselItem key={index} className="basis-1/4">
+                  <ResourceCard resource={lesson} variant="lesson" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
 
@@ -56,10 +76,18 @@ export default async function RoutePage(props: PageParams<{}>) {
         <Typography variant="h2" className="mb-5 ml-3">
           Formations
         </Typography>
-        <div className="flex gap-4 overflow-hidden">
-          {formations.map((formation) => (
-            <FormationCard key={formation.id} formation={formation} />
-          ))}
+        <div className="select-none">
+          <Carousel>
+            <CarouselPrevious />
+            <CarouselContent>
+              {formations.map((formation, index) => (
+                <CarouselItem key={index} className="basis-1/4">
+                  <ResourceCard resource={formation} variant="formation" />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
     </PageLayout>
