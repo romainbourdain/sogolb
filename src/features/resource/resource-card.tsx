@@ -31,7 +31,7 @@ export const ResourceCard = ({
     >
       {/* Background fallback */}
       <Image
-        src={`/${variants[variant].color}-cover.svg`}
+        src={`/images/${variants[variant].color}-cover.svg`}
         alt="cover"
         layout="fill"
         objectFit="cover"
