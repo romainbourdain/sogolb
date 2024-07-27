@@ -6,13 +6,15 @@ import {
   eachMonthOfInterval,
   endOfMonth,
   format,
+  nextMonday,
+  previousMonday,
   startOfMonth,
-  startOfWeek,
+  subDays,
   subMonths,
 } from "date-fns";
 
 const StreakCalendar = ({ className }: { className?: string }) => {
-  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 7)));
+  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 4)));
   const end = new Date(); // end = now
   const days = eachDayOfInterval({
     start: addDays(start, 1),
@@ -33,29 +35,14 @@ const StreakCalendar = ({ className }: { className?: string }) => {
   ];
 
   const getWeeksInMonth = (date: Date) => {
-    const start = addDays(startOfMonth(date), 1);
-    const end = endOfMonth(date);
+    const firstDay = startOfMonth(date);
+    const lastDay = endOfMonth(date);
 
-    const firstFullWeekStart = addDays(
-      startOfWeek(start, { weekStartsOn: 1 }),
-      1
-    );
+    const firstMonday = nextMonday(subDays(firstDay, 1));
+    const lastMonday = previousMonday(addDays(lastDay, 1));
 
-    const firstWeekStart =
-      firstFullWeekStart < start
-        ? startOfWeek(start, { weekStartsOn: 1 })
-        : firstFullWeekStart;
-
-    const lastWeekStart = startOfWeek(end, { weekStartsOn: 1 });
-    // const lastWeekEnd = endOfWeek(lastWeekStart, { weekStartsOn: 1 });
-
-    const weeks = differenceInCalendarWeeks(lastWeekStart, firstWeekStart) + 1;
-    console.log(lastWeekStart, firstWeekStart);
-    return weeks;
+    return differenceInCalendarWeeks(lastMonday, firstMonday) + 1;
   };
-
-  const test = getWeeksInMonth(new Date(2024, 1, 1));
-  console.log(test);
 
   return (
     <div
@@ -77,18 +64,16 @@ const StreakCalendar = ({ className }: { className?: string }) => {
         <div className="col-start-1 row-start-1" />
 
         {monthsInRange.map((month, index) => {
-          // const weeksBetween = getWeeksInMonth(month);
+          const weeksBetween = getWeeksInMonth(month);
           return (
             <div
               key={index}
               className="row-span-1 row-start-1 text-start"
-              style={
-                {
-                  // gridColumn: `span ${weeksBetween} / span ${weeksBetween}`,
-                }
-              }
+              style={{
+                gridColumn: `span ${weeksBetween} / span ${weeksBetween}`,
+              }}
             >
-              {/* {format(month, "MMM") + " " + weeksBetween} */}
+              {`${format(month, "MMM")} ${weeksBetween}`}
             </div>
           );
         })}
