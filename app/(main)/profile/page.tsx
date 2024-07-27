@@ -3,6 +3,8 @@ import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { defaultBanner } from "@/constants";
+import { StatsChart } from "@/features/charts/stats-charts";
+import StreakCalendar from "@/features/charts/streak-calendar";
 import { LazyBanner } from "@/features/profile/lazy-banner";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
 import { getDefaultUserName } from "@/lib/utils";
@@ -69,7 +71,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       <Separator className="my-6" />
 
       {/* Contents */}
-      <div className="mx-5">
+      <div className="mx-5 my-6">
         <h3 className="text-lg font-semibold">About</h3>
         <p className="text-base font-light">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -78,6 +80,12 @@ export default async function RoutePage(props: PageParams<{}>) {
           ultricies volutpat. Sed nec odio auctor, ultricies elit eget, ultrices
           nunc. Sed nec odio auctor, ultricies elit eget, ultrices nunc.
         </p>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-5 gap-3">
+        <StreakCalendar className="col-span-3" />
+        <StatsChart className="col-span-2" />
       </div>
     </PageLayout>
   );

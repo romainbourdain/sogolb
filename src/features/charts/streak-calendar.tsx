@@ -63,6 +63,7 @@ const StreakCalendar = ({ className }: { className?: string }) => {
         {/* Empty space for the top left corner */}
         <div className="col-start-1 row-start-1" />
 
+        {/* Month and weeks */}
         {monthsInRange.map((month, index) => {
           const weeksBetween = getWeeksInMonth(month);
           return (
@@ -73,11 +74,12 @@ const StreakCalendar = ({ className }: { className?: string }) => {
                 gridColumn: `span ${weeksBetween} / span ${weeksBetween}`,
               }}
             >
-              {`${format(month, "MMM")} ${weeksBetween}`}
+              {format(month, "MMM")}
             </div>
           );
         })}
 
+        {/* Days of the week */}
         {["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map((day, index) => (
           <div
             key={day}
@@ -92,6 +94,7 @@ const StreakCalendar = ({ className }: { className?: string }) => {
           </div>
         ))}
 
+        {/* Days cubes */}
         {days.map((day, index) => {
           const dayOfWeek = Math.floor(index / 7); // between 0 Sun and 6 Sat = "Which day of the week ?"
           const weekIndex = index % 7; // Column index
@@ -107,9 +110,7 @@ const StreakCalendar = ({ className }: { className?: string }) => {
                 gridColumn: dayOfWeek + 2,
                 gridRow: weekIndex + 2,
               }}
-            >
-              {day.getDate()}
-            </div>
+            />
           );
         })}
       </div>
