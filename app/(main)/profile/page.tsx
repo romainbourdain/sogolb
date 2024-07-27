@@ -5,6 +5,9 @@ import { Typography } from "@/components/ui/typography";
 import { defaultBanner } from "@/constants";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
+import Connector from "@/features/history/connector";
+import MajorEvent from "@/features/history/major-event";
+import MinorEvent from "@/features/history/minor-event";
 import { LazyBanner } from "@/features/profile/lazy-banner";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
 import { getDefaultUserName } from "@/lib/utils";
@@ -21,7 +24,7 @@ export default async function RoutePage(props: PageParams<{}>) {
   const profile = profileData.data;
 
   return (
-    <PageLayout className="h-full space-y-10">
+    <PageLayout className="h-full space-y-10 pb-20">
       {/* Headers */}
       <div>
         <div className="relative mb-5">
@@ -34,7 +37,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         </div>
 
         {/* Edit button */}
-        <div className="flex w-full justify-end p-3">
+        <div className="flex w-full justify-end mb-7 px-4">
           <Button size="sm">
             <Pen className="mr-2" size={16} />
             Modifier
@@ -45,30 +48,31 @@ export default async function RoutePage(props: PageParams<{}>) {
         <div className="mx-5 flex justify-between">
           {/* Names */}
           <div>
-            <Typography variant="h2" className="mb-0">
-              {profile.name}
-            </Typography>
+            <div className="flex justify-center items-center space-x-3">
+              <Typography variant="h2" className="mb-0">
+                {profile.name}
+              </Typography>
+              {/* Badges */}
+              <div className="flex space-x-1 my-3">
+                {profile.badges.map((badge) => (
+                  <div key={badge.id}>
+                    <Image
+                      src={badge.image}
+                      alt={badge.name}
+                      width={20}
+                      height={20}
+                      className="rounded-full"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
             <Typography
               variant="h3"
               className="font-light text-muted-foreground"
             >
               @{getDefaultUserName(profile.name || "")}
             </Typography>
-          </div>
-
-          {/* Badges */}
-          <div className="flex space-x-2 my-3">
-            {profile.badges.map((badge) => (
-              <div key={badge.id}>
-                <Image
-                  src={badge.image}
-                  alt={badge.name}
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                />
-              </div>
-            ))}
           </div>
         </div>
 
@@ -87,55 +91,38 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Stats */}
       <div className="mx-5">
-        <div className="grid grid-cols-5 gap-3">
-          <StreakCalendar className="col-span-3" />
-          <StatsChart className="col-span-2" />
+        <div
+          className="grid grid-cols-1
+        md:grid-cols-5 gap-3"
+        >
+          <StreakCalendar className="md:col-span-3 col-span-1" />
+          <StatsChart className="md:col-span-2 col-span-1" />
         </div>
       </div>
-
-      {/* Separator */}
-      {/* <Separator className="my-6" /> */}
 
       {/* Timeline */}
       <div className="mx-5">
         <Typography variant="h2">Activité récente</Typography>
-        <p className="text-base font-light">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          suscipit, sapien nec tincidunt aliquet, purus felis scelerisque
-          sapien, nec accumsan tortor est ac lectus. Nullam vel nisi nec nisl
-          ultricies volutpat. Sed nec odio auctor, ultricies elit eget, ultrices
-          nunc. Sed nec odio auctor, ultricies elit eget, ultrices nunc.Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit,
-          sapien nec tincidunt aliquet, purus felis scelerisque sapien, nec
-          accumsan tortor est ac lectus. Nullam vel nisi nec nisl ultricies
-          volutpat. Sed nec odio auctor, ultricies elit eget, ultrices nunc. Sed
-          nec odio auctor, ultricies elit eget, ultrices nunc.Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit. Aliquam suscipit, sapien nec
-          tincidunt aliquet, purus felis scelerisque sapien, nec accumsan tortor
-          est ac lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec
-          odio auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
-          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
-          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
-          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
-          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
-          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
-          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
-          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
-          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
-          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
-          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
-          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
-          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
-          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
-          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
-          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
-          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
-          ultricies elit eget, ultrices nunc.
-        </p>
+        <div>
+          <MajorEvent
+            image={profile.image}
+            name={profile.name}
+            userName={getDefaultUserName(profile.name || "")}
+          />
+          {/* relier les deux case avec un ebarre verticale */}
+          <Connector />
+          <MinorEvent
+            image={profile.image}
+            name={profile.name}
+            userName={getDefaultUserName(profile.name || "")}
+          />
+          <Connector />
+          <MajorEvent
+            image={profile.image}
+            name={profile.name}
+            userName={getDefaultUserName(profile.name || "")}
+          />
+        </div>
       </div>
     </PageLayout>
   );
