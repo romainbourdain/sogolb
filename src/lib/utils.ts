@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { isSunday, nextSunday, startOfMonth } from "date-fns";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -17,3 +18,19 @@ export function getDefaultUserName(name: string) {
     .replace(/\s/g, "")
     .toLowerCase();
 }
+
+// Find next monday of the month (return first day if first day is monday)
+// TODO move to utils
+//
+export const getFirstSunday = (date: Date) => {
+  const start = startOfMonth(date);
+  if (isSunday(start)) return start;
+  return nextSunday(start);
+};
+
+export const getActivityColor = (count: number) => {
+  if (count === 0) return "bg-muted";
+  if (count <= 3) return "bg-primary opacity-30";
+  if (count <= 6) return "bg-primary opacity-70";
+  return "bg-primary opacity-100";
+};
