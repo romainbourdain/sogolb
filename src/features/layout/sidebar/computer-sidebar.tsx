@@ -10,7 +10,7 @@ export const ComputerSidebar = () => {
     <aside className="overflow-y-scroll border-r max-md:hidden">
       <nav className="flex h-full flex-col justify-between p-2">
         <SidebarContent />
-        <Link href="/create/post" className={buttonVariants({ size: "sm" })}>
+        <Link href="/publish" className={buttonVariants({ size: "sm" })}>
           <CirclePlus className="mr-2" size={20} />
           Publier
         </Link>
