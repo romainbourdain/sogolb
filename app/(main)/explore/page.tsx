@@ -31,9 +31,7 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Articles */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Articles
-        </Typography>
+        <Typography variant="h2">Articles</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>
@@ -49,9 +47,7 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Lessons */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Leçons
-        </Typography>
+        <Typography variant="h2">Leçons</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>
@@ -67,9 +63,7 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Formations */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Formations
-        </Typography>
+        <Typography variant="h2">Formations</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>

@@ -1,7 +1,7 @@
 import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Typography } from "@/components/ui/typography";
 import { defaultBanner } from "@/constants";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
@@ -21,71 +21,121 @@ export default async function RoutePage(props: PageParams<{}>) {
   const profile = profileData.data;
 
   return (
-    <PageLayout className="h-full">
+    <PageLayout className="h-full space-y-10">
       {/* Headers */}
-      <div className="relative mb-5">
-        {/* Banner */}
-        <LazyBanner image={profile.banner || defaultBanner} />
-        {/* Picture */}
-        <div className="absolute bottom-0 left-[2%] translate-y-1/2">
-          <LazyProfilePicture image={profile.image} name={profile.name} />
+      <div>
+        <div className="relative mb-5">
+          {/* Banner */}
+          <LazyBanner image={profile.banner || defaultBanner} />
+          {/* Picture */}
+          <div className="absolute bottom-0 left-[2%] translate-y-1/2">
+            <LazyProfilePicture image={profile.image} name={profile.name} />
+          </div>
+        </div>
+
+        {/* Edit button */}
+        <div className="flex w-full justify-end p-3">
+          <Button size="sm">
+            <Pen className="mr-2" size={16} />
+            Modifier
+          </Button>
+        </div>
+
+        {/* More informations */}
+        <div className="mx-5 flex justify-between">
+          {/* Names */}
+          <div>
+            <Typography variant="h2" className="mb-0">
+              {profile.name}
+            </Typography>
+            <Typography
+              variant="h3"
+              className="font-light text-muted-foreground"
+            >
+              @{getDefaultUserName(profile.name || "")}
+            </Typography>
+          </div>
+
+          {/* Badges */}
+          <div className="flex space-x-2 my-3">
+            {profile.badges.map((badge) => (
+              <div key={badge.id}>
+                <Image
+                  src={badge.image}
+                  alt={badge.name}
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contents */}
+        <div className="mx-5">
+          <p className="text-base font-light">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            suscipit, sapien nec tincidunt aliquet, purus felis scelerisque
+            sapien, nec accumsan tortor est ac lectus. Nullam vel nisi nec nisl
+            ultricies volutpat. Sed nec odio auctor, ultricies elit eget,
+            ultrices nunc. Sed nec odio auctor, ultricies elit eget, ultrices
+            nunc.
+          </p>
         </div>
       </div>
 
-      {/* Edit button */}
-      <div className="flex w-full justify-end p-3">
-        <Button size="sm">
-          <Pen className="mr-2" size={16} />
-          Modifier
-        </Button>
-      </div>
-
-      {/* More informations */}
-      <div className="mx-5 flex justify-between">
-        {/* Names */}
-        <div>
-          <h1 className="text-2xl font-semibold">{profile.name}</h1>
-          <h2 className="text-lg font-light text-muted-foreground">
-            @{getDefaultUserName(profile.name || "")}
-          </h2>
-        </div>
-
-        {/* Badges */}
-        <div className="flex space-x-2 my-3">
-          {profile.badges.map((badge) => (
-            <div key={badge.id}>
-              <Image
-                src={badge.image}
-                alt={badge.name}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            </div>
-          ))}
+      {/* Stats */}
+      <div className="mx-5">
+        <div className="grid grid-cols-5 gap-3">
+          <StreakCalendar className="col-span-3" />
+          <StatsChart className="col-span-2" />
         </div>
       </div>
 
       {/* Separator */}
-      {/* <div className="my-6 border-b border-muted-foreground" /> */}
-      <Separator className="my-6" />
+      {/* <Separator className="my-6" /> */}
 
-      {/* Contents */}
-      <div className="mx-5 my-6">
-        <h3 className="text-lg font-semibold">About</h3>
+      {/* Timeline */}
+      <div className="mx-5">
+        <Typography variant="h2">Activité récente</Typography>
         <p className="text-base font-light">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
           suscipit, sapien nec tincidunt aliquet, purus felis scelerisque
           sapien, nec accumsan tortor est ac lectus. Nullam vel nisi nec nisl
           ultricies volutpat. Sed nec odio auctor, ultricies elit eget, ultrices
-          nunc. Sed nec odio auctor, ultricies elit eget, ultrices nunc.
+          nunc. Sed nec odio auctor, ultricies elit eget, ultrices nunc.Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit,
+          sapien nec tincidunt aliquet, purus felis scelerisque sapien, nec
+          accumsan tortor est ac lectus. Nullam vel nisi nec nisl ultricies
+          volutpat. Sed nec odio auctor, ultricies elit eget, ultrices nunc. Sed
+          nec odio auctor, ultricies elit eget, ultrices nunc.Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit. Aliquam suscipit, sapien nec
+          tincidunt aliquet, purus felis scelerisque sapien, nec accumsan tortor
+          est ac lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec
+          odio auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
+          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
+          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
+          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
+          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
+          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
+          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
+          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
+          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
+          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
+          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
+          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
+          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
+          ultricies elit eget, ultrices nunc.Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Aliquam suscipit, sapien nec tincidunt
+          aliquet, purus felis scelerisque sapien, nec accumsan tortor est ac
+          lectus. Nullam vel nisi nec nisl ultricies volutpat. Sed nec odio
+          auctor, ultricies elit eget, ultrices nunc. Sed nec odio auctor,
+          ultricies elit eget, ultrices nunc.
         </p>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-5 gap-3">
-        <StreakCalendar className="col-span-3" />
-        <StatsChart className="col-span-2" />
       </div>
     </PageLayout>
   );

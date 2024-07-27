@@ -12,7 +12,7 @@ export default async function RoutePage(props: PageParams<{}>) {
     <PageLayout className="h-full">
       {/* Stats section */}
       <section>
-        <Typography variant="h1" className="mb-5 ml-3 mt-10">
+        <Typography variant="h1" className="mt-10">
           Bienvenue {name}
         </Typography>
         <div className="grid grid-cols-5 gap-3">
