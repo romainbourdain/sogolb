@@ -1,6 +1,12 @@
 import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Typography } from "@/components/ui/typography";
 import { defaultBanner } from "@/constants";
 import { StatsChart } from "@/features/charts/stats-charts";
@@ -22,6 +28,44 @@ export default async function RoutePage(props: PageParams<{}>) {
   }
 
   const profile = profileData.data;
+
+  const badges = [
+    {
+      id: 1,
+      name: "Rejoint depuis mars 2024",
+      image: "/images/modo.svg",
+    },
+    {
+      id: 2,
+      name: "Rédacteur",
+      image: "/images/writer.svg",
+    },
+    {
+      id: 3,
+      name: "Python",
+      image: "/images/python.svg",
+    },
+    {
+      id: 4,
+      name: "Admin",
+      image: "/images/admin.svg",
+    },
+    {
+      id: 5,
+      name: "Développeur web",
+      image: "/images/web.svg",
+    },
+    {
+      id: 6,
+      name: "Docker",
+      image: "/images/docker.svg",
+    },
+    {
+      id: 7,
+      name: "Rust",
+      image: "/images/rs.svg",
+    },
+  ];
 
   return (
     <PageLayout className="h-full space-y-10 pb-20">
@@ -53,17 +97,22 @@ export default async function RoutePage(props: PageParams<{}>) {
                 {profile.name}
               </Typography>
               {/* Badges */}
-              <div className="flex space-x-1 my-3">
-                {profile.badges.map((badge) => (
-                  <div key={badge.id}>
-                    <Image
-                      src={badge.image}
-                      alt={badge.name}
-                      width={20}
-                      height={20}
-                      className="rounded-full"
-                    />
-                  </div>
+              <div className="flex space-x-1 my-3 justify-center items-center">
+                {badges.map((badge) => (
+                  <TooltipProvider key={badge.id} delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Image
+                          src={badge.image}
+                          alt={badge.name}
+                          width={20}
+                          height={20}
+                          className="rounded-full"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>{badge.name}</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 ))}
               </div>
             </div>
