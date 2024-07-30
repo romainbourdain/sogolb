@@ -28,13 +28,14 @@ export default async function RoutePage(props: PageParams<{}>) {
     },
     include: {
       badges: true,
+      activity: true,
     },
   });
+  // console.log(profileData);
   if (!profileData) {
     throw new Error("Profile data not found");
   }
   const profile = profileData;
-  // console.log(profileData);
   // if (!profileData?.data) {
   //   throw new Error("Profile data not found");
   // }
@@ -113,7 +114,10 @@ export default async function RoutePage(props: PageParams<{}>) {
           className="grid grid-cols-1
         md:grid-cols-5 gap-3"
         >
-          <StreakCalendar className="md:col-span-3 col-span-1" />
+          <StreakCalendar
+            className="md:col-span-3 col-span-1"
+            activity={profile.activity}
+          />
           <StatsChart className="md:col-span-2 col-span-1" />
         </div>
       </div>

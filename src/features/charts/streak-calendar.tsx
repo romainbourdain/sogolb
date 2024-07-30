@@ -13,37 +13,37 @@ import {
   subMonths,
 } from "date-fns";
 
-const StreakCalendar = ({ className }: { className?: string }) => {
+const StreakCalendar = ({
+  className,
+  activity,
+}: {
+  className?: string;
+  activity: {
+    id: string;
+    userId: string;
+    date: Date;
+    count: number;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+}) => {
   const start = getFirstSunday(startOfMonth(subMonths(new Date(), 4)));
   const end = new Date(); // end = now
   const days = eachDayOfInterval({
     start: addDays(start, 1),
     end,
   });
-
-  // Get unique months within the range
   const monthsInRange = eachMonthOfInterval({ start, end });
-
-  // Calculate the number of weeks to display
   const totalWeeks = Math.ceil(days.length / 7);
 
-  const fake_activity = [
-    days.map((day) => ({
-      date: format(day, "yyyy-MM-dd"),
-      count: Math.floor(Math.random() * 10),
-    })),
-  ];
-
+  // todo: move to utils
   const getWeeksInMonth = (date: Date) => {
     const firstDay = startOfMonth(date);
     const lastDay = endOfMonth(date);
-
     const firstMonday = nextMonday(subDays(firstDay, 1));
     const lastMonday = previousMonday(addDays(lastDay, 1));
-
     return differenceInCalendarWeeks(lastMonday, firstMonday) + 1;
   };
-
   return (
     <div
       className={cn(
@@ -103,7 +103,7 @@ const StreakCalendar = ({ className }: { className?: string }) => {
               key={format(day, "yyyy-MM-dd")}
               className={cn(
                 "size-5 rounded-sm border border-secondary/30 text-center text-secondary",
-                getActivityColor(fake_activity[0][index].count),
+                getActivityColor(activity[index]?.count),
                 "row-span-1 col-span-1"
               )}
               style={{

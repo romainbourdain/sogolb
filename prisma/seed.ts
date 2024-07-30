@@ -1,4 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import {
+  addDays,
+  eachDayOfInterval,
+  isSunday,
+  nextSunday,
+  startOfMonth,
+  subMonths,
+} from "date-fns";
 
 const defaultBanner =
   "https://images.unsplash.com/photo-1552265129-2ac1a82da59e?q=80&w=3873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -19,10 +27,48 @@ const createFakeUser = async () => {
           {
             id: "6",
           },
-          { id: "1" },
+          {
+            id: "1",
+          },
         ],
       },
+      // userActivity: {
+      //   connect: [
+      //     Array.from({ length: 30 }, (_, i) => ({
+      //       id: i + 1,
+      //     })),
+      //   ],
+      // },
     },
+  });
+};
+
+const createFakeActivity = async () => {
+  const getFirstSunday = (date: Date) => {
+    const start = startOfMonth(date);
+    if (isSunday(start)) return start;
+    return nextSunday(start);
+  };
+
+  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 4)));
+  const end = new Date(); // end = now
+
+  const days = eachDayOfInterval({
+    start: addDays(start, 1),
+    end,
+  });
+
+  // Génère les données d'activité
+  const userActivity = days.map((day, i) => ({
+    id: i.toString(),
+    date: day,
+    count: Math.floor(Math.random() * 10),
+    userId: "1",
+  }));
+
+  // Insertion dans la base de données
+  await prisma.activity.createMany({
+    data: userActivity,
   });
 };
 
@@ -71,11 +117,13 @@ const createFakeBadges = async () => {
 async function main() {
   // Delete all data
   await prisma.user.deleteMany();
+  await prisma.activity.deleteMany();
   await prisma.badge.deleteMany();
 
   // Populate with fake data
   await createFakeBadges();
   await createFakeUser();
+  await createFakeActivity();
 }
 
 main()
