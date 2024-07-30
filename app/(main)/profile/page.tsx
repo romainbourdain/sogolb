@@ -1,4 +1,3 @@
-import { getMyProfile } from "@/actions/profile.action";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,56 +15,31 @@ import MajorEvent from "@/features/history/major-event";
 import MinorEvent from "@/features/history/minor-event";
 import { LazyBanner } from "@/features/profile/lazy-banner";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
+import { db } from "@/lib/db";
 import { getDefaultUserName } from "@/lib/utils";
 import type { PageParams } from "@/types/next";
 import { Pen } from "lucide-react";
 import Image from "next/image";
 
 export default async function RoutePage(props: PageParams<{}>) {
-  const profileData = await getMyProfile();
-  if (!profileData?.data) {
+  const profileData = await db.user.findUnique({
+    where: {
+      id: "1",
+    },
+    include: {
+      badges: true,
+    },
+  });
+  if (!profileData) {
     throw new Error("Profile data not found");
   }
+  const profile = profileData;
+  // console.log(profileData);
+  // if (!profileData?.data) {
+  //   throw new Error("Profile data not found");
+  // }
 
-  const profile = profileData.data;
-
-  const badges = [
-    {
-      id: 1,
-      name: "Rejoint depuis mars 2024",
-      image: "/images/modo.svg",
-    },
-    {
-      id: 2,
-      name: "Rédacteur",
-      image: "/images/writer.svg",
-    },
-    {
-      id: 3,
-      name: "Python",
-      image: "/images/python.svg",
-    },
-    {
-      id: 4,
-      name: "Admin",
-      image: "/images/admin.svg",
-    },
-    {
-      id: 5,
-      name: "Développeur web",
-      image: "/images/web.svg",
-    },
-    {
-      id: 6,
-      name: "Docker",
-      image: "/images/docker.svg",
-    },
-    {
-      id: 7,
-      name: "Rust",
-      image: "/images/rs.svg",
-    },
-  ];
+  // const profile = profileData.data;
 
   return (
     <PageLayout className="h-full space-y-10 pb-20">
@@ -98,7 +72,7 @@ export default async function RoutePage(props: PageParams<{}>) {
               </Typography>
               {/* Badges */}
               <div className="flex space-x-1 my-3 justify-center items-center">
-                {badges.map((badge) => (
+                {profile.badges.map((badge) => (
                   <TooltipProvider key={badge.id} delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger>
@@ -128,12 +102,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         {/* Contents */}
         <div className="mx-5">
           <p className="text-base font-light">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            suscipit, sapien nec tincidunt aliquet, purus felis scelerisque
-            sapien, nec accumsan tortor est ac lectus. Nullam vel nisi nec nisl
-            ultricies volutpat. Sed nec odio auctor, ultricies elit eget,
-            ultrices nunc. Sed nec odio auctor, ultricies elit eget, ultrices
-            nunc.
+            {profile.bio || "Aucune description"}
           </p>
         </div>
       </div>
