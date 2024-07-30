@@ -32,13 +32,6 @@ const createFakeUser = async () => {
           },
         ],
       },
-      // userActivity: {
-      //   connect: [
-      //     Array.from({ length: 30 }, (_, i) => ({
-      //       id: i + 1,
-      //     })),
-      //   ],
-      // },
     },
   });
 };
@@ -78,7 +71,7 @@ const createFakeBadges = async () => {
       {
         id: "1",
         name: "Rejoint depuis mars 2024",
-        image: "/images/modo.svg",
+        image: "/images/kiwi.svg",
       },
       {
         id: "2",

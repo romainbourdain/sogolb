@@ -1,5 +1,6 @@
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -10,9 +11,6 @@ import { Typography } from "@/components/ui/typography";
 import { defaultBanner } from "@/constants";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
-import Connector from "@/features/history/connector";
-import MajorEvent from "@/features/history/major-event";
-import MinorEvent from "@/features/history/minor-event";
 import { LazyBanner } from "@/features/profile/lazy-banner";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
 import { db } from "@/lib/db";
@@ -125,13 +123,12 @@ export default async function RoutePage(props: PageParams<{}>) {
       {/* Timeline */}
       <div className="mx-5">
         <Typography variant="h2">Activité récente</Typography>
-        <div>
-          <MajorEvent
+        <div className="space-y-2">
+          {/* <MajorEvent
             image={profile.image}
             name={profile.name}
             userName={getDefaultUserName(profile.name || "")}
           />
-          {/* relier les deux case avec un ebarre verticale */}
           <Connector />
           <MinorEvent
             image={profile.image}
@@ -143,7 +140,26 @@ export default async function RoutePage(props: PageParams<{}>) {
             image={profile.image}
             name={profile.name}
             userName={getDefaultUserName(profile.name || "")}
-          />
+          /> */}
+          <Skeleton className="w-full h-40 bg-border" />
+          <div className="relative flex flex-row h-8">
+            <Skeleton className="w-[5px] h-full bg-border absolute top-1/2 left-10 transform -translate-y-1/2 -translate-x-1/2" />
+          </div>
+          <div className="flex flex-row justify-center items-center h-10 relative">
+            <Skeleton
+              className="absolute top-1/2 left-10 transform -translate-y-1/2 translate-x-[-50%]
+                      h-full aspect-square bg-border rounded-full
+                      flex justify-center items-center"
+            />
+            <div className="w-full flex flex-row justify-between items-center h-10 gap-5 pl-[4.5rem]">
+              <Skeleton className="h-5 bg-border w-96" />
+              <Skeleton className="h-5 bg-border w-20 rounded-full" />
+            </div>
+          </div>
+          <div className="relative flex flex-row h-8">
+            <Skeleton className="w-[5px] h-full bg-border absolute top-1/2 left-10 transform -translate-y-1/2 -translate-x-1/2" />
+          </div>
+          <Skeleton className="w-full h-40  bg-border" />
         </div>
       </div>
     </PageLayout>
