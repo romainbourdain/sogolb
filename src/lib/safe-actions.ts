@@ -1,23 +1,14 @@
-import {
-  createSafeActionClient,
-  DEFAULT_SERVER_ERROR_MESSAGE,
-} from "next-safe-action";
+import { createSafeActionClient } from "next-safe-action";
 import { auth } from "./auth";
 
 export class ActionError extends Error {}
 
-export const actionClient = createSafeActionClient({
-  handleReturnedServerError(e) {
-    if (e instanceof ActionError) {
-      return e.message;
-    }
-    return DEFAULT_SERVER_ERROR_MESSAGE;
-  },
-});
+export const actionClient = createSafeActionClient();
 
-export const authenticatedActionClient = actionClient.use(async ({ next }) => {
-  const session = await auth();
-  if (!session?.user) throw new ActionError("Unauthorized");
-
-  return next({ ctx: { id: session.user.id } });
-});
+export const authenticatedActionClient = createSafeActionClient().use(
+  async ({ next }) => {
+    const session = await auth();
+    if (!session?.user.id) throw new Error("Invalid session");
+    return next({ ctx: { userId: session.user.id } });
+  }
+);

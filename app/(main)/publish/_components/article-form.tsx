@@ -12,7 +12,8 @@ import {
   useZodForm,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ArticleSchema, type ArticleData } from "@/schemas/publish.schema";
+import { createArticle } from "../publish.action";
+import { ArticleSchema, type ArticleData } from "../publish.schema";
 
 export type ArticleFormProps = {
   defaultValues?: ArticleData;
@@ -24,7 +25,9 @@ export const ArticleForm = ({ defaultValues }: ArticleFormProps) => {
     defaultValues,
   });
 
-  const onSubmit = async (values: ArticleData) => {};
+  const onSubmit = async (values: ArticleData) => {
+    const data = await createArticle(values);
+  };
 
   return (
     <Form form={form} onSubmit={onSubmit} className="space-y-4">

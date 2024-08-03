@@ -17,7 +17,7 @@ import { FormSuccess } from "@/features/form/form-success";
 import type { LoginData } from "@/schemas/auth.schema";
 import { LoginSchema } from "@/schemas/auth.schema";
 import { useState } from "react";
-import { CardWrapper } from "./card-wrapper";
+import { CardWrapper } from "../../../src/features/auth/form/card-wrapper";
 
 export type LoginFormProps = {
   csrfToken: string;

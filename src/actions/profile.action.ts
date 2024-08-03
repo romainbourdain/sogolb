@@ -22,9 +22,9 @@ export const getProfile = authenticatedActionClient
   });
 
 export const getMyProfile = authenticatedActionClient.action(
-  async ({ ctx: { id } }) => {
-    if (!id) throw new ActionError();
-    const profile = await getProfile({ id });
+  async ({ ctx: { userId } }) => {
+    if (!userId) throw new ActionError();
+    const profile = await getProfile({ id: userId });
     if (!profile?.data) {
       throw new ActionError("Profile not found");
     }
