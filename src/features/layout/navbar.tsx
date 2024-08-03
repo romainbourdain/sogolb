@@ -1,6 +1,6 @@
+import { Logo } from "../../components/layout/logo";
 import { UserButton } from "../auth/user-button";
 import { ThemeToggle } from "../theme/theme-toggle";
-import { Logo } from "./logo";
 import { MobileSidebar } from "./sidebar/mobile-sidebar";
 
 export type NavbarProps = {

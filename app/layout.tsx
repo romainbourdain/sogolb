@@ -15,7 +15,7 @@ export default async function RootLayout({ children }: LayoutParams<{}>) {
       <head>
         <link rel="icon" {...config} />
       </head>
-      <body className={"min-h-screen h-full font-poppins"}>
+      <body className={"h-screen font-poppins"}>
         <Provider>{children}</Provider>
       </body>
     </html>
