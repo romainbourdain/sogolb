@@ -2,7 +2,7 @@ import {
   createSafeActionClient,
   DEFAULT_SERVER_ERROR_MESSAGE,
 } from "next-safe-action";
-import { auth } from "./auth";
+import { auth } from "../auth/auth";
 
 export class ActionError extends Error {}
 

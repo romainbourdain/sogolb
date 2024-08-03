@@ -6,7 +6,7 @@ import { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-import { env } from "./env";
+import { env } from "../lib/env";
 
 class InvalidLoginError extends CredentialsSignin {
   message = "Invalid identifier or password";

@@ -1,8 +1,8 @@
+import { auth } from "@/auth/auth";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import { Typography } from "@/components/ui/typography";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
-import { auth } from "@/lib/auth";
 import type { PageParams } from "@/types/next";
 
 export default async function RoutePage(props: PageParams<{}>) {
