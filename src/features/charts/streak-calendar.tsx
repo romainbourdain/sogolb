@@ -14,7 +14,7 @@ import {
 } from "date-fns";
 
 const StreakCalendar = ({ className }: { className?: string }) => {
-  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 4)));
+  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 2)));
   const end = new Date(); // end = now
   const days = eachDayOfInterval({
     start: addDays(start, 1),

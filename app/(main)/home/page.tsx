@@ -1,5 +1,6 @@
 import { auth } from "@/auth/auth";
-import { PageLayout } from "@/components/tailwind/page-layout";
+import { Island } from "@/components/layout/island";
+import { Search } from "@/components/layout/search";
 import { Typography } from "@/components/ui/typography";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
@@ -9,18 +10,19 @@ export default async function RoutePage(props: PageParams<{}>) {
   const session = await auth();
   const name = session?.user.name?.split(" ")[0];
   return (
-    <PageLayout className="h-full">
-      {/* Stats section */}
-      <section>
+    <div className="grid h-full grid-cols-[1fr_auto] gap-4">
+      <div>
+        <Search />
         <Typography variant="h1" className="mb-5 ml-3 mt-10">
           Bienvenue {name}
         </Typography>
-        <div className="grid grid-cols-5 gap-3">
-          <StreakCalendar className="col-span-3" />
-          <StatsChart className="col-span-2" />
-        </div>
-      </section>
-      {/* Récent */}
-    </PageLayout>
+      </div>
+      <Island>
+        <Typography variant="h2">Activité</Typography>
+        <StreakCalendar />
+        <Typography variant="h2">Compétences</Typography>
+        <StatsChart />
+      </Island>
+    </div>
   );
 }

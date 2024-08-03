@@ -6,7 +6,7 @@ export default async function RouteLayout({ children }: LayoutParams<{}>) {
   return (
     <div className="grid h-screen w-full grid-cols-[auto_1fr] grid-rows-1 overflow-y-hidden">
       <Sidebar />
-      <main className="size-full overflow-y-scroll">
+      <main className="size-full overflow-y-scroll p-4">
         <ProtectedRoute>{children}</ProtectedRoute>
       </main>
     </div>

@@ -49,7 +49,7 @@ export const Sidebar = () => {
     <aside className="h-full w-56 bg-card">
       <ScrollArea className="h-full">
         <div className="space-y-6 px-3 py-4">
-          <Logo />
+          <Logo href="/home" />
           {sidebarLinks.map((section) => (
             <div key={section.title} className="space-y-2">
               <Typography variant="h3">{section.title}</Typography>
