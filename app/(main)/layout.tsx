@@ -1,14 +1,12 @@
 import { ProtectedRoute } from "@/auth/protected-route";
-import { Navbar } from "@/features/layout/navbar";
-import { ComputerSidebar } from "@/features/layout/sidebar/computer-sidebar";
+import { Sidebar } from "@/components/layout/sidebar";
 import type { LayoutParams } from "@/types/next";
 
 export default async function RouteLayout({ children }: LayoutParams<{}>) {
   return (
-    <div className="grid min-h-screen grid-cols-1 grid-rows-[auto_1fr] md:grid-cols-[20%_1fr] xl:grid-cols-[15%_1fr]">
-      <Navbar showUserButton showSidebarButton />
-      <ComputerSidebar />
-      <main>
+    <div className="grid h-screen w-full grid-cols-[auto_1fr] grid-rows-1 overflow-y-hidden">
+      <Sidebar />
+      <main className="size-full overflow-y-scroll">
         <ProtectedRoute>{children}</ProtectedRoute>
       </main>
     </div>

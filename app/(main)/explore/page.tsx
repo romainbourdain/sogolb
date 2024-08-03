@@ -16,10 +16,10 @@ export default async function RoutePage(props: PageParams<{}>) {
   return (
     <PageLayout className="h-full px-5 md:px-10">
       {/* Search bar */}
-      <div className="flex justify-center items-center py-5">
+      <div className="flex items-center justify-center py-5">
         <div className="relative w-full">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <Search className="w-5 h-5 text-muted-foreground" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <Search className="size-5 text-muted-foreground" />
           </div>
           <Input
             type="search"
