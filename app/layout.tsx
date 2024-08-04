@@ -1,3 +1,4 @@
+import { NextTopLoader } from "@/components/layout/top-loader";
 import { config } from "@/config";
 import { cn } from "@/lib/utils";
 import type { LayoutParams } from "@/types/next";
@@ -38,7 +39,10 @@ export default async function RootLayout({ children }: LayoutParams<{}>) {
         <link rel="icon" {...config} />
       </head>
       <body className={cn("h-screen w-full", marsel.className)}>
-        <Provider>{children}</Provider>
+        <Provider>
+          <NextTopLoader />
+          {children}
+        </Provider>
       </body>
     </html>
   );
