@@ -231,9 +231,9 @@ model Activity {
 
 model Event {
   id          String   @id @default(cuid())
-  title       String
+  action      String
   description String
-  date        DateTime
+  type        String
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
