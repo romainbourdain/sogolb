@@ -1,6 +1,5 @@
 "use client";
 
-import { signInWithEmailAndPasswordAction } from "@/actions/auth.action";
 import {
   Form,
   FormControl,
@@ -32,11 +31,10 @@ export const LoginForm = ({ csrfToken }: LoginFormProps) => {
   });
 
   const onSubmit = async (values: LoginData) => {
-    const res = await signInWithEmailAndPasswordAction(values);
-    if (!res?.data) return setError("Something went wrong");
-
-    setError(res.data.error);
-    setSuccess(res.data.success);
+    // const res = await signInWithEmailAndPasswordAction(values);
+    // if (!res?.data) return setError("Something went wrong");
+    // setError(res.data.error);
+    // setSuccess(res.data.success);
   };
 
   return (

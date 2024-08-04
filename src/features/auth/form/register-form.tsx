@@ -1,6 +1,5 @@
 "use client";
 
-import { registerAction } from "@/actions/auth.action";
 import {
   Form,
   FormControl,
@@ -28,11 +27,10 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = async (values: RegisterData) => {
-    const res = await registerAction(values);
-    if (!res?.data) return setError("Something went wrong");
-
-    setError(res.data.error);
-    setSuccess(res.data.success);
+    // const res = await registerAction(values);
+    // if (!res?.data) return setError("Something went wrong");
+    // setError(res.data.error);
+    // setSuccess(res.data.success);
   };
 
   return (

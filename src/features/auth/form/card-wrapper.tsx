@@ -1,7 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -21,7 +20,6 @@ export type CardWrapperProps = PropsWithChildren<{
 }>;
 
 export const CardWrapper = ({
-  children,
   showSocial,
   title,
   description,
@@ -34,7 +32,7 @@ export const CardWrapper = ({
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      {/* <CardContent>{children}</CardContent> */}
       <CardFooter>{showSocial && <Social />}</CardFooter>
       <div className="flex w-full justify-center pb-3">
         <Link

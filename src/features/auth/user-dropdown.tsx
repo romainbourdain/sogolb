@@ -1,6 +1,5 @@
 "use client";
 
-import { signOutAction } from "@/actions/auth.action";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +9,7 @@ import {
 import { LayoutDashboard, LogOut, User } from "lucide-react";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
+import { signOutAction } from "./auth.action";
 
 export type UserDropdownProps = PropsWithChildren<{}>;
 
@@ -30,7 +30,7 @@ export const UserDropdown = ({ children }: UserDropdownProps) => {
             Profil
           </DropdownMenuItem>
         </Link>
-        <DropdownMenuItem onClick={() => signOutAction(null)}>
+        <DropdownMenuItem onClick={() => signOutAction()}>
           <LogOut size={16} className="mr-2" />
           Se déconnecter
         </DropdownMenuItem>
