@@ -1,11 +1,12 @@
 import { Typography } from "@/components/ui/typography";
-import { BookOpen, GraduationCap, LucideIcon, Newspaper } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { BookOpen, GraduationCap, Newspaper } from "lucide-react";
 import Image from "next/image";
 
-interface ResourceCardProps {
+export type ResourceCardProps = {
   title: string;
-  content: string;
-}
+  variant: "article" | "lesson" | "formation";
+};
 
 const variants: {
   [key: string]: { color: string; icon: LucideIcon };
@@ -15,19 +16,13 @@ const variants: {
   lesson: { color: "orange", icon: BookOpen },
 };
 
-export const ResourceCard = ({
-  resource,
-  variant,
-}: {
-  resource: ResourceCardProps;
-  variant: keyof typeof variants;
-}) => {
+export const ResourceCard = ({ title, variant }: ResourceCardProps) => {
   const Icon: LucideIcon = variants[variant].icon;
   return (
     <div
-      className="relative flex flex-col justify-between
-       border-secondary border-4 rounded-xl p-3
-       aspect-square overflow-hidden size-36 md:size-52"
+      className="relative flex aspect-square size-36
+       flex-col justify-between overflow-hidden rounded-xl
+       border-4 border-secondary p-3 md:size-52"
     >
       {/* Background fallback */}
       <Image
@@ -39,13 +34,13 @@ export const ResourceCard = ({
       />
 
       {/* Top right icon */}
-      <div className="flex justify-end items-center w-full">
+      <div className="flex w-full items-center justify-end">
         <Icon className="text-white" />
       </div>
 
       {/* Title */}
-      <Typography variant="h2" className="font-semibold text-white text-md">
-        {resource.title}
+      <Typography variant="h2" className="text-md font-semibold text-white">
+        {title}
       </Typography>
     </div>
   );

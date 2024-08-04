@@ -31,14 +31,14 @@ export const articles = [
     title: "Article 8",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
-  {
-    title: "Article 9",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    title: "Article 10",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
+  // {
+  //   title: "Article 9",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
+  // {
+  //   title: "Article 10",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
 ];
 
 export const lessons = [
@@ -74,14 +74,14 @@ export const lessons = [
     title: "Leçon 8",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
-  {
-    title: "Leçon 9",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    title: "Leçon 10",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
+  // {
+  //   title: "Leçon 9",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
+  // {
+  //   title: "Leçon 10",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
 ];
 
 export const formations = [
@@ -117,12 +117,12 @@ export const formations = [
     title: "Formation 8",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
-  {
-    title: "Formation 9",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    title: "Formation 10",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
+  // {
+  //   title: "Formation 9",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
+  // {
+  //   title: "Formation 10",
+  //   content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  // },
 ];

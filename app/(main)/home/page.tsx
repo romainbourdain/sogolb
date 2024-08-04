@@ -5,7 +5,7 @@ import StreakCalendar from "@/features/charts/streak-calendar";
 import {
   PageAside,
   PageContainer,
-  PageHeader,
+  PageContent,
 } from "@/features/layout/page-layout";
 import type { PageParams } from "@/types/next";
 
@@ -14,12 +14,11 @@ export default async function RoutePage(props: PageParams<{}>) {
   const name = session?.user.name?.split(" ")[0];
   return (
     <PageContainer>
-      <div>
-        <PageHeader />
-        <Typography variant="h1" className="mb-5 ml-3 mt-10">
+      <PageContent>
+        <Typography variant="h1" className="px-4">
           Bienvenue {name}
         </Typography>
-      </div>
+      </PageContent>
       <PageAside>
         <Typography variant="h2">Activité</Typography>
         <StreakCalendar />
