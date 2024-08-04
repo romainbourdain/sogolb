@@ -20,8 +20,6 @@ export function getDefaultUserName(name: string) {
 }
 
 // Find next monday of the month (return first day if first day is monday)
-// TODO move to utils
-//
 export const getFirstSunday = (date: Date) => {
   const start = startOfMonth(date);
   if (isSunday(start)) return start;

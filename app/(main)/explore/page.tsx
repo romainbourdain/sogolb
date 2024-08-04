@@ -14,12 +14,22 @@ import type { PageParams } from "@/types/next";
 export default async function RoutePage(props: PageParams<{}>) {
   return (
     <PageLayout className="h-full px-5 md:px-10">
-      <SearchBar />
+      {/* Search bar */}
+      <div className="flex items-center justify-center py-5">
+        <div className="relative w-full">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <Search className="size-5 text-muted-foreground" />
+          </div>
+          <Input
+            type="search"
+            placeholder="Rechercher un article, une leçon, une formation ..."
+            className="pl-10"
+          />
+        </div>
+      </div>
       {/* Articles */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Articles
-        </Typography>
+        <Typography variant="h2">Articles</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>
@@ -35,9 +45,7 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Lessons */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Leçons
-        </Typography>
+        <Typography variant="h2">Leçons</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>
@@ -53,9 +61,7 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Formations */}
       <div className="mt-10">
-        <Typography variant="h2" className="mb-5 ml-3">
-          Formations
-        </Typography>
+        <Typography variant="h2">Formations</Typography>
         <div className="select-none">
           <Carousel>
             <CarouselContent>

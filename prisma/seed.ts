@@ -1,46 +1,166 @@
 import { PrismaClient } from "@prisma/client";
+import {
+  addDays,
+  eachDayOfInterval,
+  isSunday,
+  nextSunday,
+  startOfMonth,
+  subMonths,
+} from "date-fns";
 
+const defaultBanner =
+  "https://images.unsplash.com/photo-1552265129-2ac1a82da59e?q=80&w=3873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const bio = "Cocorico, je suis un albatros. ".repeat(10);
 const prisma = new PrismaClient();
 
-async function main() {
-  const userEmail = "loisgallaud@hotmail.com";
-
-  // Créez le badge séparément
-  const badge1 = await prisma.badge.create({
+const createFakeUser = async () => {
+  await prisma.user.create({
     data: {
-      name: "badge1",
+      id: "1",
+      name: "Lois Gallaud",
+      email: "loisgallaud@test.com",
       image: "https://api.dicebear.com/8.x/lorelei-neutral/png?seed=John",
-    },
-  });
-
-  const badge2 = await prisma.badge.create({
-    data: {
-      name: "badge2",
-      image: "https://api.dicebear.com/8.x/lorelei-neutral/png?seed=Jane",
-    },
-  });
-
-  console.log("Badges créés:", badge1, badge2);
-
-  // Vérifiez si l'utilisateur existe déjà
-  const existingUser = await prisma.user.findUnique({
-    where: { email: userEmail },
-    include: { badges: true },
-  });
-
-  console.log("L'utilisateur existe déjà:", existingUser);
-
-  // Ajoutez les badges à l'utilisateur existant
-  const updatedUser = await prisma.user.update({
-    where: { email: userEmail },
-    data: {
+      banner: defaultBanner,
+      bio: bio,
       badges: {
-        connect: [{ id: badge1.id }, { id: badge2.id }],
+        connect: [
+          {
+            id: "6",
+          },
+          {
+            id: "1",
+          },
+        ],
       },
     },
-    include: { badges: true },
   });
-  console.log("Utilisateur mis à jour avec le badge:", updatedUser);
+};
+
+const createFakeActivity = async () => {
+  const getFirstSunday = (date: Date) => {
+    const start = startOfMonth(date);
+    if (isSunday(start)) return start;
+    return nextSunday(start);
+  };
+
+  const start = getFirstSunday(startOfMonth(subMonths(new Date(), 4)));
+  const end = new Date(); // end = now
+
+  const days = eachDayOfInterval({
+    start: addDays(start, 1),
+    end,
+  });
+
+  // Génère les données d'activité
+  const userActivity = days.map((day, i) => ({
+    id: i.toString(),
+    date: day,
+    count: Math.floor(Math.random() * 10),
+    userId: "1",
+  }));
+
+  // Insertion dans la base de données
+  await prisma.activity.createMany({
+    data: userActivity,
+  });
+};
+
+const createFakeBadges = async () => {
+  await prisma.badge.createMany({
+    data: [
+      {
+        id: "1",
+        name: "Rejoint depuis mars 2024",
+        image: "/images/kiwi.svg",
+      },
+      {
+        id: "2",
+        name: "Rédacteur",
+        image: "/images/writer.svg",
+      },
+      {
+        id: "3",
+        name: "Python",
+        image: "/images/python.svg",
+      },
+      {
+        id: "4",
+        name: "Admin",
+        image: "/images/admin.svg",
+      },
+      {
+        id: "5",
+        name: "Développeur web",
+        image: "/images/web.svg",
+      },
+      {
+        id: "6",
+        name: "Docker",
+        image: "/images/docker.svg",
+      },
+      {
+        id: "7",
+        name: "Rust",
+        image: "/images/rs.svg",
+      },
+    ],
+  });
+};
+
+const createFakeEvents = async () => {
+  await prisma.event.createMany({
+    data: [
+      {
+        id: "1",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-01"),
+        userId: "1",
+      },
+      {
+        id: "2",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-02"),
+        userId: "1",
+      },
+      {
+        id: "3",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-03"),
+        userId: "1",
+      },
+      {
+        id: "4",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-04"),
+        userId: "1",
+      },
+      {
+        id: "5",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-05"),
+        userId: "1",
+      },
+    ],
+  });
+};
+
+async function main() {
+  // Delete all data
+  await prisma.user.deleteMany();
+  await prisma.event.deleteMany();
+  await prisma.activity.deleteMany();
+  await prisma.badge.deleteMany();
+
+  // Populate with fake data
+  await createFakeBadges();
+  await createFakeUser();
+  await createFakeEvents();
+  await createFakeActivity();
 }
 
 main()

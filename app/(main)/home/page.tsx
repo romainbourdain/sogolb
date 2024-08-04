@@ -13,10 +13,10 @@ export default async function RoutePage(props: PageParams<{}>) {
   const session = await auth();
   const name = session?.user.name?.split(" ")[0];
   return (
-    <PageContainer>
-      <div>
-        <PageHeader />
-        <Typography variant="h1" className="mb-5 ml-3 mt-10">
+    <PageLayout className="h-full">
+      {/* Stats section */}
+      <section>
+        <Typography variant="h1" className="mt-10">
           Bienvenue {name}
         </Typography>
       </div>

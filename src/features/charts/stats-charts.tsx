@@ -3,7 +3,8 @@
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import type { ChartConfig} from "@/components/ui/chart";
+import { ChartContainer } from "@/components/ui/chart";
 
 const chartData = [
   { category: "IA", activity: 320 },
@@ -27,7 +28,7 @@ export function StatsChart({ className }: { className?: string }) {
       <CardContent className="pb-0">
         <ChartContainer
           config={chartConfig}
-          className="flex justify-center items-center size-full aspect-square max-h-[250px]"
+          className="flex aspect-square size-full max-h-[250px] items-center justify-center"
         >
           <RadarChart data={chartData}>
             <PolarAngleAxis dataKey="category" />

@@ -15,6 +15,7 @@ model User {
   emailVerified DateTime?
   image         String?
   banner        String?
+  bio           String?  
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
@@ -25,6 +26,8 @@ model User {
   badges        Badge[]         @relation("UserBadges")
   bookmarks     Bookmark[]
   reactions     Reaction[]
+  activity      Activity[]
+  events        Event[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -211,6 +214,29 @@ model Reference {
   url       String
   chapterId String
   chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Activity {
+  id     String   @id @default(cuid())
+  userId String
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date   DateTime
+  count  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  date        DateTime
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
