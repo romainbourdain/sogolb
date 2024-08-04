@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { EventType, PrismaClient } from "@prisma/client";
 import {
   addDays,
   eachDayOfInterval,
@@ -112,42 +112,37 @@ const createFakeEvents = async () => {
     data: [
       {
         id: "1",
-        action: "a écrit un article",
         description:
           "L'utilisateur a publié un nouvel article sur le développement web moderne.",
-        type: "major",
+        type: EventType.ARTICLE_WRITTEN,
         userId: "1",
       },
       {
         id: "2",
-        action: "a commenté",
         description:
           "L'utilisateur a commenté sur l'article 'Les meilleures pratiques de JavaScript'.",
-        type: "minor",
+        type: EventType.COMMENTED,
         userId: "1",
       },
       {
         id: "3",
-        action: "a fini une leçon",
         description:
           "L'utilisateur a complété la leçon 'Introduction à React'.",
-        type: "major",
+        type: EventType.LESSON_COMPLETED,
         userId: "1",
       },
       {
         id: "4",
-        action: "a aimé un article",
         description:
           "L'utilisateur a aimé l'article 'CSS avancé : Flexbox et Grid'.",
-        type: "minor",
+        type: EventType.LIKED_ARTICLE,
         userId: "1",
       },
       {
         id: "5",
-        action: "a répondu à un commentaire",
         description:
           "L'utilisateur a répondu à un commentaire sur l'article 'Node.js pour les débutants'.",
-        type: "minor",
+        type: EventType.COMMENTED,
         userId: "1",
       },
     ],

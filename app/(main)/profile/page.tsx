@@ -43,7 +43,7 @@ export default async function RoutePage(props: PageParams<{}>) {
   // const user = profileData.data;
 
   return (
-    <PageLayout className="pb-20 space-y-10">
+    <PageLayout className="space-y-10 pb-20">
       {/* Headers */}
       <div>
         <div className="relative mb-5">
@@ -125,7 +125,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       {/* Timeline */}
       <div className="mx-5">
         <Typography variant="h2" className="mb-4">Activité récente</Typography>
-        <LazyProfileEvents events={user.events} image={user.image} name={user.name} />
+        <LazyProfileEvents events={user.events} profilePicture={user.image} profileName={user.name} />
       </div>
     </PageLayout>
   );

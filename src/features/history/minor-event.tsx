@@ -1,30 +1,26 @@
 import { Badge } from "@/components/ui/badge";
-import { getDefaultUserName, getInitials, getTimeInterval } from "@/lib/utils";
-import { Event, User } from "@prisma/client";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { getDefaultUserName, getEventTypeCreds, getTimeInterval } from "@/lib/utils";
+import type { Event, User } from "@prisma/client";
 import { Newspaper } from "lucide-react";
-import Link from "next/link";
-import { FaComment } from "react-icons/fa";
 
 export type EventsProps = {
   event: Event;
-  image: User["image"];
-  name: User["name"];
-}
+  profilePicture: User["image"];
+  profileName: User["name"];
+};
 
-const MinorEvent = (
-  { event, image, name }: EventsProps
-) => {
-  const userName = getDefaultUserName(name || "");
+const MinorEvent = ({ event, profilePicture, profileName }: EventsProps) => {
+  const userName = getDefaultUserName(profileName || "");
+  const { type, createdAt } = event;
+  const { action, Icon, color } = getEventTypeCreds(type);
+
   return (
     <div className="relative flex h-10 flex-row items-center justify-center">
       {/* Icon */}
       <div
-        className="absolute left-10 top-1/2 flex aspect-square h-full
-      -translate-y-1/2 translate-x-[-50%] items-center justify-center
-      rounded-full bg-primary/10"
+        className="absolute left-10 top-1/2 flex aspect-square h-full -translate-y-1/2 translate-x-[-50%] items-center justify-center rounded-full bg-accent"
       >
-        <FaComment size={20} />
+        <Icon size={20} />
       </div>
 
       {/* Event */}
@@ -32,28 +28,28 @@ const MinorEvent = (
         {/* Title */}
         <div className="flex flex-row items-center justify-center gap-2">
           {/* Avatar */}
-          <Link href={`/profile/${userName}`}>
+          {/* <Link href={`/profile/${userName}`}>
             <Avatar className="hidden size-10 overflow-hidden rounded-full border-2 border-background md:block">
-              {image ? (
-                <AvatarImage src={image} alt="Profile Image" />
-              ) : (
-                <AvatarFallback className="text-md">
-                  {getInitials(name || "")}
-                </AvatarFallback>
-              )}
+              <AvatarImage src={profilePicture || ""} alt="Profile Image" />
+              <AvatarFallback className="text-md flex items-center justify-center text-center">
+                {getInitials(profileName || "")}
+              </AvatarFallback>
+
             </Avatar>
-          </Link>
+          </Link> */}
           {/* Action */}
           <p className="flex gap-1 text-muted-foreground">
-            <span className="hidden text-foreground md:block">@{userName}</span>
-            {` ${event.action} ${getTimeInterval(event.createdAt)}`}
+            {` ${action} ${getTimeInterval(createdAt)}`}
           </p>
         </div>
 
         {/* Badge */}
-        <Badge variant="default" className="text-xs font-medium">
+        <Badge variant="default" className="flex items-center justify-center text-xs font-medium" style={{
+          backgroundColor: color,
+          color: "white",
+        }}>
           <Newspaper className="mr-1" size={13} />
-          {event.type}
+          {type}
         </Badge>
       </div>
     </div>

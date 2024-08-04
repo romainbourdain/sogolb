@@ -231,12 +231,18 @@ model Activity {
 
 model Event {
   id          String   @id @default(cuid())
-  action      String
   description String
-  type        String
+  type        EventType
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum EventType {
+  ARTICLE_WRITTEN
+  COMMENTED
+  LESSON_COMPLETED
+  LIKED_ARTICLE
 }

@@ -1,5 +1,13 @@
+import { EventType } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { isSunday, nextSunday, startOfMonth } from "date-fns";
+import { AiOutlineAlert } from "react-icons/ai";
+import {
+  BiSolidComment,
+  BiSolidGraduation,
+  BiSolidHeart,
+  BiSolidPen,
+} from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -58,4 +66,48 @@ export const getTimeInterval = (date: Date) => {
   } else {
     return `il y a ${years} an${years > 1 ? "s" : ""}`;
   }
+};
+
+export const getEventTypeCreds = (eventType: EventType) => {
+  switch (eventType) {
+    case EventType.ARTICLE_WRITTEN:
+      return {
+        action: "a écrit un article",
+        Icon: BiSolidPen,
+        color: "#f0a500",
+        isMajor: true,
+      };
+    case EventType.COMMENTED:
+      return {
+        action: "a commenté",
+        Icon: BiSolidComment,
+        color: "#007bff",
+        isMajor: false,
+      };
+    case EventType.LESSON_COMPLETED:
+      return {
+        action: "a fini une leçon",
+        Icon: BiSolidGraduation,
+        color: "#28a745",
+        isMajor: true,
+      };
+    case EventType.LIKED_ARTICLE:
+      return {
+        action: "a aimé un article",
+        Icon: BiSolidHeart,
+        color: "#dc3545",
+        isMajor: false,
+      };
+    default:
+      return {
+        action: "a effectué une action",
+        Icon: AiOutlineAlert,
+        color: "#6c757d",
+        isMajor: false,
+      };
+  }
+};
+
+export const isMajorEvent = (eventType: EventType) => {
+  return getEventTypeCreds(eventType).isMajor;
 };
