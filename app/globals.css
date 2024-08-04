@@ -56,22 +56,22 @@
     --background: 224 5% 8%;
     --foreground: 210 20% 98%;
 
-    --card: 215 7% 9%;
+    --card: 215 7% 12%;
     --card-foreground: 210 20% 98%;
 
     --popover: 224 71% 4%;
     --popover-foreground: 210 20% 98%;
 
     --primary: 91 75% 63%;
-    --primary-foreground: 210 20% 98%;
+    --primary-foreground: 210 20% 12%;
 
     --secondary: 215 28% 17%;
     --secondary-foreground: 210 20% 98%;
 
-    --muted: 108 8% 12%;
+    --muted: 108 8% 16%;
     --muted-foreground: 218 11% 65%;
 
-    --accent: 215 7% 14%;
+    --accent: 215 7% 16%;
     --accent-foreground: 210 20% 98%;
 
     --destructive: 0 62% 30%;
