@@ -1,5 +1,5 @@
-import { NextTopLoader } from "@/components/layout/top-loader";
 import { config } from "@/config";
+import { NextTopLoader } from "@/features/layout/top-loader";
 import { cn } from "@/lib/utils";
 import type { LayoutParams } from "@/types/next";
 import type { Metadata } from "next";

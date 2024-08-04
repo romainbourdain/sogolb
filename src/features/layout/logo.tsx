@@ -1,6 +1,6 @@
+import { Typography } from "@/components/ui/typography";
 import Link from "next/link";
 import { FaKiwiBird } from "react-icons/fa";
-import { Typography } from "../ui/typography";
 
 export type LogoProps = {
   href: string;

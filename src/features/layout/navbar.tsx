@@ -1,5 +1,5 @@
-import { Logo } from "@/components/layout/logo";
 import { UserButton } from "@/features/auth/user-button";
+import { Logo } from "@/features/layout/logo";
 import { ThemeToggle } from "@/features/theme/theme-toggle";
 
 export type NavbarProps = {

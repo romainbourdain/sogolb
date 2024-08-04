@@ -1,5 +1,5 @@
-import { ProtectedRoute } from "@/auth/protected-route";
-import { Sidebar } from "@/components/layout/sidebar";
+import { ProtectedRoute } from "@/features/auth/protected-route";
+import { Sidebar } from "@/features/layout/sidebar";
 import type { LayoutParams } from "@/types/next";
 
 export default async function RouteLayout({ children }: LayoutParams<{}>) {

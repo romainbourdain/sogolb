@@ -1,9 +1,9 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
-import { Input } from "../ui/input";
 
-export const Search = () => {
+export const SearchBar = () => {
   // TODO : Add search functionality
   return (
     <div className="relative w-full">

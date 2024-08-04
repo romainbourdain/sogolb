@@ -1,12 +1,12 @@
-import { auth } from "@/auth/auth";
+import { Typography } from "@/components/ui/typography";
+import { auth } from "@/features/auth/auth";
+import { StatsChart } from "@/features/charts/stats-charts";
+import StreakCalendar from "@/features/charts/streak-calendar";
 import {
   PageAside,
   PageContainer,
   PageHeader,
-} from "@/components/layout/page-layout";
-import { Typography } from "@/components/ui/typography";
-import { StatsChart } from "@/features/charts/stats-charts";
-import StreakCalendar from "@/features/charts/streak-calendar";
+} from "@/features/layout/page-layout";
 import type { PageParams } from "@/types/next";
 
 export default async function RoutePage(props: PageParams<{}>) {

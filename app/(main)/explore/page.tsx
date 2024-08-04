@@ -1,5 +1,4 @@
 // "use client";
-import { Search } from "@/components/layout/searchbar";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import {
   Carousel,
@@ -8,13 +7,14 @@ import {
 } from "@/components/ui/carousel";
 import { Typography } from "@/components/ui/typography";
 import { articles } from "@/data/resources";
+import { SearchBar } from "@/features/layout/searchbar";
 import { ResourceCard } from "@/features/resource/resource-card";
 import type { PageParams } from "@/types/next";
 
 export default async function RoutePage(props: PageParams<{}>) {
   return (
     <PageLayout className="h-full px-5 md:px-10">
-      <Search />
+      <SearchBar />
       {/* Articles */}
       <div className="mt-10">
         <Typography variant="h2" className="mb-5 ml-3">

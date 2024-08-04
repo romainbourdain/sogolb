@@ -1,5 +1,8 @@
 "use client";
 
+import { buttonVariants } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import {
   Book,
@@ -12,9 +15,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { buttonVariants } from "../ui/button";
-import { ScrollArea } from "../ui/scroll-area";
-import { Typography } from "../ui/typography";
 import { Logo } from "./logo";
 
 const sidebarLinks = [

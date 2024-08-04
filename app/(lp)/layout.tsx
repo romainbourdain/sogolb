@@ -1,5 +1,5 @@
+import { Navbar } from "@/features/layout/navbar";
 import type { LayoutParams } from "@/types/next";
-import { Navbar } from "../../src/components/layout/navbar";
 
 export default async function RouteLayout({ children }: LayoutParams<{}>) {
   return (

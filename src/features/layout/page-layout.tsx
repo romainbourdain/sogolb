@@ -1,8 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { twx } from "@/lib/twx";
 import { Menu } from "lucide-react";
 import type { PropsWithChildren } from "react";
-import { Button } from "../ui/button";
-import { Search } from "./searchbar";
+import { SearchBar } from "./searchbar";
 import { Tools } from "./tools";
 
 export const PageContainer = twx.div`mx-auto grid h-full max-w-screen-xl grid-cols-[auto_300px] gap-4 max-xl:grid-cols-1`;
@@ -22,7 +22,7 @@ export const PageHeader = () => {
       <Button variant="card" className="md:hidden">
         <Menu size={24} />
       </Button>
-      <Search />
+      <SearchBar />
       <div className="xl:hidden">
         <Tools />
       </div>
