@@ -3,25 +3,25 @@ import { Skeleton } from "@/components/ui/skeleton";
 const ProfileEventsSkeleton = () => {
   return (
     <>
-      <Skeleton className="w-full h-40 bg-border" />
-      <div className="relative flex flex-row h-8">
-        <Skeleton className="w-[5px] h-full bg-border absolute top-1/2 left-10 transform -translate-y-1/2 -translate-x-1/2" />
+      <Skeleton className="h-40 w-full bg-border" />
+      <div className="relative flex h-8 flex-row">
+        <Skeleton className="absolute left-10 top-1/2 h-full w-[5px] -translate-x-1/2 -translate-y-1/2 bg-border" />
       </div>
-      <div className="flex flex-row justify-center items-center h-10 relative">
+      <div className="relative flex h-10 flex-row items-center justify-center">
         <Skeleton
-          className="absolute top-1/2 left-10 transform -translate-y-1/2 translate-x-[-50%]
-                      h-full aspect-square bg-border rounded-full
-                      flex justify-center items-center"
+          className="absolute left-10 top-1/2 flex aspect-square h-full
+                      -translate-y-1/2 translate-x-[-50%] items-center justify-center
+                      rounded-full bg-border"
         />
-        <div className="w-full flex flex-row justify-between items-center h-10 gap-5 pl-[4.5rem]">
-          <Skeleton className="h-5 bg-border w-96" />
-          <Skeleton className="h-5 bg-border w-20 rounded-full" />
+        <div className="flex h-10 w-full flex-row items-center justify-between gap-5 pl-[4.5rem]">
+          <Skeleton className="h-5 w-96 bg-border" />
+          <Skeleton className="h-5 w-20 rounded-full bg-border" />
         </div>
       </div>
-      <div className="relative flex flex-row h-8">
-        <Skeleton className="w-[5px] h-full bg-border absolute top-1/2 left-10 transform -translate-y-1/2 -translate-x-1/2" />
+      <div className="relative flex h-8 flex-row">
+        <Skeleton className="absolute left-10 top-1/2 h-full w-[5px] -translate-x-1/2 -translate-y-1/2 bg-border" />
       </div>
-      <Skeleton className="w-full h-40  bg-border" />
+      <Skeleton className="h-40 w-full  bg-border" />
     </>
   );
 };

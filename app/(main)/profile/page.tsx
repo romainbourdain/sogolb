@@ -55,7 +55,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         </div>
 
         {/* Edit button */}
-        <div className="flex w-full justify-end mb-7 px-4">
+        <div className="mb-7 flex w-full justify-end px-4">
           <Button size="sm">
             <Pen className="mr-2" size={16} />
             Modifier
@@ -66,12 +66,12 @@ export default async function RoutePage(props: PageParams<{}>) {
         <div className="mx-5 flex justify-between">
           {/* Names */}
           <div>
-            <div className="flex justify-center items-center space-x-3">
+            <div className="flex items-center justify-center space-x-3">
               <Typography variant="h2" className="mb-0">
                 {profile.name}
               </Typography>
               {/* Badges */}
-              <div className="flex space-x-1 my-3 justify-center items-center">
+              <div className="my-3 flex items-center justify-center space-x-1">
                 {profile.badges.map((badge) => (
                   <TooltipProvider key={badge.id} delayDuration={100}>
                     <Tooltip>
@@ -111,13 +111,13 @@ export default async function RoutePage(props: PageParams<{}>) {
       <div className="mx-5">
         <div
           className="grid grid-cols-1
-        md:grid-cols-5 gap-3"
+        gap-3 md:grid-cols-5"
         >
           <StreakCalendar
-            className="md:col-span-3 col-span-1"
+            className="col-span-1 md:col-span-3"
             activity={profile.activity}
           />
-          <StatsChart className="md:col-span-2 col-span-1" />
+          <StatsChart className="col-span-1 md:col-span-2" />
         </div>
       </div>
 

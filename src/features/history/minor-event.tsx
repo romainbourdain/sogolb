@@ -20,22 +20,22 @@ const MinorEvent = ({
     type: "Article",
   };
   return (
-    <div className="relative flex flex-row justify-center items-center h-10">
+    <div className="relative flex h-10 flex-row items-center justify-center">
       {/* Icon */}
       <div
-        className="absolute top-1/2 left-10 transform -translate-y-1/2 translate-x-[-50%]
-      h-full aspect-square bg-primary/10 rounded-full
-      flex justify-center items-center"
+        className="absolute left-10 top-1/2 flex aspect-square h-full
+      -translate-y-1/2 translate-x-[-50%] items-center justify-center
+      rounded-full bg-primary/10"
       >
         <FaComment size={20} />
       </div>
 
       {/* Event */}
-      <div className="pl-[4.5rem] flex flex-row justify-between items-center w-full">
+      <div className="flex w-full flex-row items-center justify-between pl-[4.5rem]">
         {/* Title */}
-        <div className="flex flex-row justify-center items-center gap-2">
+        <div className="flex flex-row items-center justify-center gap-2">
           {/* Avatar */}
-          <Avatar className="size-10 border-2 border-background rounded-full overflow-hidden hidden md:block">
+          <Avatar className="hidden size-10 overflow-hidden rounded-full border-2 border-background md:block">
             {image ? (
               <AvatarImage src={image} alt="Profile Image" />
             ) : (
@@ -45,9 +45,9 @@ const MinorEvent = ({
             )}
           </Avatar>
           {/* Action */}
-          <p className="text-muted-foreground flex gap-1">
-            <span className="text-foreground hidden md:block">@{userName}</span>
-            {" " + fake_data.action + " " + fake_data.date}
+          <p className="flex gap-1 text-muted-foreground">
+            <span className="hidden text-foreground md:block">@{userName}</span>
+            {` ${  fake_data.action  } ${  fake_data.date}`}
           </p>
         </div>
 

@@ -19,11 +19,11 @@ const MajorEvent = ({
   };
   return (
     <Card className="overflow-hidden">
-      <div className="bg-primary/10 py-3 px-4 flex flex-row justify-between items-center">
+      <div className="flex flex-row items-center justify-between bg-primary/10 px-4 py-3">
         {/* Title */}
-        <div className="flex flex-row justify-center items-center gap-2">
+        <div className="flex flex-row items-center justify-center gap-2">
           {/* Avatar */}
-          <Avatar className="size-10 border-2 border-background rounded-full overflow-hidden aspect-square">
+          <Avatar className="aspect-square size-10 overflow-hidden rounded-full border-2 border-background">
             {image ? (
               <AvatarImage src={image} alt="Profile Image" />
             ) : (
@@ -34,16 +34,16 @@ const MajorEvent = ({
           </Avatar>
           <p className="text-muted-foreground">
             <span className="text-foreground">@{userName}</span>
-            {" " + fake_data.action}
+            {` ${  fake_data.action}`}
           </p>
         </div>
 
         {/* Icon */}
-        <div className="rounded-full aspect-square bg-primary/20 size-8 flex justify-center items-center">
+        <div className="flex aspect-square size-8 items-center justify-center rounded-full bg-primary/20">
           <AiFillThunderbolt className="text-primary" size={25} />
         </div>
       </div>
-      <CardContent className="flex justify-start items-center p-5">
+      <CardContent className="flex items-center justify-start p-5">
         <p>{fake_data.content}</p>
       </CardContent>
       <CardFooter className="px-5 py-3">

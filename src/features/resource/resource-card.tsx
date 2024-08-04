@@ -1,5 +1,6 @@
 import { Typography } from "@/components/ui/typography";
-import { BookOpen, GraduationCap, LucideIcon, Newspaper } from "lucide-react";
+import type { LucideIcon} from "lucide-react";
+import { BookOpen, GraduationCap, Newspaper } from "lucide-react";
 import Image from "next/image";
 
 interface ResourceCardProps {
@@ -25,9 +26,9 @@ export const ResourceCard = ({
   const Icon: LucideIcon = variants[variant].icon;
   return (
     <div
-      className="relative flex flex-col justify-between
-       border-secondary border-4 rounded-xl p-3
-       aspect-square overflow-hidden size-36 md:size-52"
+      className="relative flex aspect-square size-36
+       flex-col justify-between overflow-hidden rounded-xl
+       border-4 border-secondary p-3 md:size-52"
     >
       {/* Background fallback */}
       <Image
@@ -39,12 +40,12 @@ export const ResourceCard = ({
       />
 
       {/* Top right icon */}
-      <div className="flex justify-end items-center w-full">
+      <div className="flex w-full items-center justify-end">
         <Icon className="text-white" />
       </div>
 
       {/* Title */}
-      <Typography variant="h2" className="font-semibold text-white text-md">
+      <Typography variant="h2" className="text-md font-semibold text-white">
         {resource.title}
       </Typography>
     </div>
