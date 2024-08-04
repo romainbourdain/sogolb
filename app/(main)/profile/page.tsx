@@ -49,7 +49,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         </div>
 
         {/* Badges */}
-        <div className="flex space-x-2 my-3">
+        <div className="my-3 flex space-x-2">
           {profile.badges.map((badge) => (
             <div key={badge.id}>
               <Image
