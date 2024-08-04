@@ -112,37 +112,42 @@ const createFakeEvents = async () => {
     data: [
       {
         id: "1",
-        action: "Cocorico, je suis un albatros",
-        description: "Cocorico, je suis un albatros. ".repeat(3),
+        action: "a écrit un article",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
         type: "major",
         userId: "1",
       },
       {
         id: "2",
-        action: "Cocorico, je suis un albatros",
-        description: "Cocorico, je suis un albatros. ".repeat(3),
+        action: "a commenté",
+        description:
+          "L'utilisateur a commenté sur l'article 'Les meilleures pratiques de JavaScript'.",
         type: "minor",
         userId: "1",
       },
       {
         id: "3",
-        action: "Cocorico, je suis un albatros",
-        description: "Cocorico, je suis un albatros. ".repeat(3),
+        action: "a fini une leçon",
+        description:
+          "L'utilisateur a complété la leçon 'Introduction à React'.",
         type: "major",
         userId: "1",
       },
       {
         id: "4",
-        action: "Cocorico, je suis un albatros",
-        description: "Cocorico, je suis un albatros. ".repeat(3),
+        action: "a aimé un article",
+        description:
+          "L'utilisateur a aimé l'article 'CSS avancé : Flexbox et Grid'.",
         type: "minor",
         userId: "1",
       },
       {
         id: "5",
-        action: "Cocorico, je suis un albatros",
-        description: "Cocorico, je suis un albatros. ".repeat(3),
-        type: "major",
+        action: "a répondu à un commentaire",
+        description:
+          "L'utilisateur a répondu à un commentaire sur l'article 'Node.js pour les débutants'.",
+        type: "minor",
         userId: "1",
       },
     ],

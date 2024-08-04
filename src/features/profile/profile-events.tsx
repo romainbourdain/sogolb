@@ -1,17 +1,28 @@
-import Connector from "@/features/history/connector";
-import MajorEvent from "@/features/history/major-event";
-import MinorEvent from "@/features/history/minor-event";
-import { getDefaultUserName } from "@/lib/utils";
+import { Event, User } from "@prisma/client";
+import { Fragment } from "react";
+import Connector from "../history/connector";
+import MajorEvent from "../history/major-event";
+import MinorEvent from "../history/minor-event";
 
-const ProfileEvents = ({ image, name }: { image: string; name: string }) => {
-  const userName = getDefaultUserName(name || "");
+export type ProfileEventsProps = {
+  events: Event[];
+  image: User["image"];
+  name: User["name"];
+}
+
+const ProfileEvents = ({ events, image, name
+}: ProfileEventsProps) => {
   return (
     <div className="space-y-2">
-      <MajorEvent image={image} name={name} userName={userName} />
-      <Connector />
-      <MinorEvent image={image} name={name} userName={userName} />
-      <Connector />
-      <MajorEvent image={image} name={name} userName={userName} />
+      {
+        events.map((event) => (
+          <Fragment key={event.id}>
+            {event.type === "major" && <MajorEvent event={event} image={image} name={name} />}
+            {event.type === "minor" && <MinorEvent event={event} image={image} name={name} />}
+            <Connector />
+          </Fragment>
+        ))
+      }
     </div>
   );
 };

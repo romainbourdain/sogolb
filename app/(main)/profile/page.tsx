@@ -34,13 +34,13 @@ export default async function RoutePage(props: PageParams<{}>) {
   if (!profileData) {
     throw new Error("Profile data not found");
   }
-  const profile = profileData;
-  // console.log(profile);
+  const user = profileData;
+  // console.log(user);
   // if (!profileData?.data) {
   //   throw new Error("Profile data not found");
   // }
 
-  // const profile = profileData.data;
+  // const user = profileData.data;
 
   return (
     <PageLayout className="pb-20 space-y-10">
@@ -48,10 +48,10 @@ export default async function RoutePage(props: PageParams<{}>) {
       <div>
         <div className="relative mb-5">
           {/* Banner */}
-          <LazyBanner image={profile.banner || defaultBanner} />
+          <LazyBanner image={user.banner || defaultBanner} />
           {/* Picture */}
           <div className="absolute bottom-0 left-[2%] translate-y-1/2">
-            <LazyProfilePicture image={profile.image} name={profile.name} />
+            <LazyProfilePicture image={user.image} name={user.name} />
           </div>
         </div>
 
@@ -69,11 +69,11 @@ export default async function RoutePage(props: PageParams<{}>) {
           <div className="mb-4">
             <div className="flex items-baseline justify-center space-x-3">
               <Typography variant="h2" className="flex items-center">
-                {profile.name}
+                {user.name}
               </Typography>
               {/* Badges */}
               <div className="flex h-full items-center justify-center space-x-1">
-                {profile.badges.map((badge) => (
+                {user.badges.map((badge) => (
                   <TooltipProvider key={badge.id} delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -95,7 +95,7 @@ export default async function RoutePage(props: PageParams<{}>) {
               variant="h3"
               className="font-light text-muted-foreground"
             >
-              @{getDefaultUserName(profile.name || "")}
+              @{getDefaultUserName(user.name || "")}
             </Typography>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         {/* Contents */}
         <div className="mx-5">
           <p className="text-base font-light">
-            {profile.bio || "Aucune description"}
+            {user.bio || "Aucune description"}
           </p>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         >
           <StreakCalendar
             className="col-span-1 md:col-span-3"
-            activity={profile.activity}
+            activity={user.activity}
           />
           <StatsChart className="col-span-1 md:col-span-2" />
         </div>
@@ -125,7 +125,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       {/* Timeline */}
       <div className="mx-5">
         <Typography variant="h2" className="mb-4">Activité récente</Typography>
-        <LazyProfileEvents image={profile} name={profile.name} />
+        <LazyProfileEvents events={user.events} image={user.image} name={user.name} />
       </div>
     </PageLayout>
   );

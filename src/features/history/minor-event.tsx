@@ -1,24 +1,21 @@
 import { Badge } from "@/components/ui/badge";
-import { getInitials } from "@/lib/utils";
+import { getDefaultUserName, getInitials, getTimeInterval } from "@/lib/utils";
+import { Event, User } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Newspaper } from "lucide-react";
+import Link from "next/link";
 import { FaComment } from "react-icons/fa";
 
-const MinorEvent = ({
-  image,
-  name,
-  userName,
-}: {
-  image: string | null;
-  name: string | null;
-  userName: string | null;
-}) => {
-  const fake_data = {
-    action: "a commenté",
-    content: "Il n'y a pas d'événement mineur pour le moment.",
-    date: "Il y a 3 jours",
-    type: "Article",
-  };
+export type EventsProps = {
+  event: Event;
+  image: User["image"];
+  name: User["name"];
+}
+
+const MinorEvent = (
+  { event, image, name }: EventsProps
+) => {
+  const userName = getDefaultUserName(name || "");
   return (
     <div className="relative flex h-10 flex-row items-center justify-center">
       {/* Icon */}
@@ -35,26 +32,28 @@ const MinorEvent = ({
         {/* Title */}
         <div className="flex flex-row items-center justify-center gap-2">
           {/* Avatar */}
-          <Avatar className="hidden size-10 overflow-hidden rounded-full border-2 border-background md:block">
-            {image ? (
-              <AvatarImage src={image} alt="Profile Image" />
-            ) : (
-              <AvatarFallback className="text-md">
-                {getInitials(name || "")}
-              </AvatarFallback>
-            )}
-          </Avatar>
+          <Link href={`/profile/${userName}`}>
+            <Avatar className="hidden size-10 overflow-hidden rounded-full border-2 border-background md:block">
+              {image ? (
+                <AvatarImage src={image} alt="Profile Image" />
+              ) : (
+                <AvatarFallback className="text-md">
+                  {getInitials(name || "")}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </Link>
           {/* Action */}
           <p className="flex gap-1 text-muted-foreground">
             <span className="hidden text-foreground md:block">@{userName}</span>
-            {` ${  fake_data.action  } ${  fake_data.date}`}
+            {` ${event.action} ${getTimeInterval(event.createdAt)}`}
           </p>
         </div>
 
         {/* Badge */}
         <Badge variant="default" className="text-xs font-medium">
           <Newspaper className="mr-1" size={13} />
-          {fake_data.type}
+          {event.type}
         </Badge>
       </div>
     </div>
