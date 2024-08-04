@@ -1,12 +1,13 @@
 import { Typography } from "@/components/ui/typography";
-import type { LucideIcon} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { BookOpen, GraduationCap, Newspaper } from "lucide-react";
 import Image from "next/image";
 
-interface ResourceCardProps {
+export type ResourceCardProps = {
   title: string;
   content: string;
-}
+  variant: "article" | "lesson" | "formation";
+};
 
 const variants: {
   [key: string]: { color: string; icon: LucideIcon };
@@ -16,13 +17,7 @@ const variants: {
   lesson: { color: "orange", icon: BookOpen },
 };
 
-export const ResourceCard = ({
-  resource,
-  variant,
-}: {
-  resource: ResourceCardProps;
-  variant: keyof typeof variants;
-}) => {
+export const ResourceCard = ({ title, variant }: ResourceCardProps) => {
   const Icon: LucideIcon = variants[variant].icon;
   return (
     <div
@@ -46,7 +41,7 @@ export const ResourceCard = ({
 
       {/* Title */}
       <Typography variant="h2" className="text-md font-semibold text-white">
-        {resource.title}
+        {title}
       </Typography>
     </div>
   );

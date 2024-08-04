@@ -16,16 +16,22 @@ export const PageAside = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const PageHeader = () => {
+export const PageContent = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className="flex gap-2">
-      <Button variant="card" className="md:hidden">
-        <Menu size={24} />
-      </Button>
-      <SearchBar />
-      <div className="xl:hidden">
-        <Tools />
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <Button variant="card" className="md:hidden">
+          <Menu size={24} />
+        </Button>
+        <SearchBar />
+        <div className="xl:hidden">
+          <Tools />
+        </div>
       </div>
+      <div className={className}>{children}</div>
     </div>
   );
 };

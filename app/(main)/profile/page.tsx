@@ -62,6 +62,7 @@ export default async function RoutePage(props: PageParams<{}>) {
           </Button>
         </div>
 
+
         {/* More informations */}
         <div className="mx-5 flex justify-between">
           {/* Names */}
