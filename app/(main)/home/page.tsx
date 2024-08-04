@@ -1,6 +1,9 @@
 import { auth } from "@/auth/auth";
-import { Island } from "@/components/layout/island";
-import { Search } from "@/components/layout/search";
+import {
+  PageAside,
+  PageContainer,
+  PageHeader,
+} from "@/components/layout/page-layout";
 import { Typography } from "@/components/ui/typography";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
@@ -10,19 +13,19 @@ export default async function RoutePage(props: PageParams<{}>) {
   const session = await auth();
   const name = session?.user.name?.split(" ")[0];
   return (
-    <div className="grid h-full grid-cols-[1fr_auto] gap-4">
+    <PageContainer>
       <div>
-        <Search />
+        <PageHeader />
         <Typography variant="h1" className="mb-5 ml-3 mt-10">
           Bienvenue {name}
         </Typography>
       </div>
-      <Island>
+      <PageAside>
         <Typography variant="h2">Activité</Typography>
         <StreakCalendar />
         <Typography variant="h2">Compétences</Typography>
         <StatsChart />
-      </Island>
-    </div>
+      </PageAside>
+    </PageContainer>
   );
 }

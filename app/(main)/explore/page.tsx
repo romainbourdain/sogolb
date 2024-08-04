@@ -1,5 +1,5 @@
 // "use client";
-import { Search } from "@/components/layout/search";
+import { Search } from "@/components/layout/searchbar";
 import { PageLayout } from "@/components/tailwind/page-layout";
 import {
   Carousel,

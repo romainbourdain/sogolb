@@ -46,10 +46,12 @@ const sidebarLinks = [
 export const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="h-full w-56 bg-card">
+    <aside className="h-full w-56 bg-card max-md:hidden">
       <ScrollArea className="h-full">
         <div className="space-y-6 px-3 py-4">
-          <Logo href="/home" />
+          <div className="px-2">
+            <Logo href="/home" />
+          </div>
           {sidebarLinks.map((section) => (
             <div key={section.title} className="space-y-2">
               <Typography variant="h3">{section.title}</Typography>

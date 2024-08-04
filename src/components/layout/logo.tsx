@@ -8,7 +8,7 @@ export type LogoProps = {
 
 export const Logo = ({ href }: LogoProps) => {
   return (
-    <Link href={href} className="flex items-center gap-4">
+    <Link href={href} className="flex items-center gap-3">
       <FaKiwiBird size={30} className="text-primary" />
       <Typography variant="h2">Kiwi</Typography>
     </Link>
