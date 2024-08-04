@@ -18,8 +18,8 @@ const MajorEvent = ({
     date: "Il y a 2 jours",
   };
   return (
-    <Card className="overflow-hidden">
-      <div className="flex flex-row items-center justify-between bg-primary/10 px-4 py-3">
+    <Card className="overflow-hidden border-none">
+      <div className="flex flex-row items-center justify-between bg-muted px-4 py-3">
         {/* Title */}
         <div className="flex flex-row items-center justify-center gap-2">
           {/* Avatar */}
@@ -34,7 +34,7 @@ const MajorEvent = ({
           </Avatar>
           <p className="text-muted-foreground">
             <span className="text-foreground">@{userName}</span>
-            {` ${  fake_data.action}`}
+            {` ${fake_data.action}`}
           </p>
         </div>
 

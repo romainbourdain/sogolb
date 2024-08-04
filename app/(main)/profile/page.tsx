@@ -11,6 +11,7 @@ import { defaultBanner } from "@/constants";
 import { StatsChart } from "@/features/charts/stats-charts";
 import StreakCalendar from "@/features/charts/streak-calendar";
 import { LazyBanner } from "@/features/profile/lazy-banner";
+import { LazyProfileEvents } from "@/features/profile/lazy-profile-events";
 import { LazyProfilePicture } from "@/features/profile/lazy-profile-picture";
 import { db } from "@/lib/db";
 import { getDefaultUserName } from "@/lib/utils";
@@ -34,7 +35,7 @@ export default async function RoutePage(props: PageParams<{}>) {
     throw new Error("Profile data not found");
   }
   const profile = profileData;
-  console.log(profile);
+  // console.log(profile);
   // if (!profileData?.data) {
   //   throw new Error("Profile data not found");
   // }
@@ -42,7 +43,7 @@ export default async function RoutePage(props: PageParams<{}>) {
   // const profile = profileData.data;
 
   return (
-    <PageLayout className="h-full space-y-10 pb-20">
+    <PageLayout className="pb-20 space-y-10">
       {/* Headers */}
       <div>
         <div className="relative mb-5">
@@ -65,7 +66,7 @@ export default async function RoutePage(props: PageParams<{}>) {
         {/* More informations */}
         <div className="mx-5 flex justify-between">
           {/* Names */}
-          <div>
+          <div className="mb-4">
             <div className="flex items-baseline justify-center space-x-3">
               <Typography variant="h2" className="flex items-center">
                 {profile.name}
@@ -123,8 +124,8 @@ export default async function RoutePage(props: PageParams<{}>) {
 
       {/* Timeline */}
       <div className="mx-5">
-        <Typography variant="h2">Activité récente</Typography>
-        {/* <LazyProfileEvents image={profile} name={profile.name} /> */}
+        <Typography variant="h2" className="mb-4">Activité récente</Typography>
+        <LazyProfileEvents image={profile} name={profile.name} />
       </div>
     </PageLayout>
   );
