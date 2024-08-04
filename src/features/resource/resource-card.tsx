@@ -5,6 +5,7 @@ import Image from "next/image";
 
 export type ResourceCardProps = {
   title: string;
+  content: string;
   variant: "article" | "lesson" | "formation";
 };
 

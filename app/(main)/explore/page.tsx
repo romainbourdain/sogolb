@@ -1,5 +1,6 @@
 // "use client";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
 import { articles, formations, lessons } from "@/data/resources";
 import {
@@ -8,7 +9,7 @@ import {
   PageContent,
 } from "@/features/layout/page-layout";
 import type { PageParams } from "@/types/next";
-import { Groupe } from "./groupe";
+import { Groupe } from "../../../src/features/resource/groupe";
 
 export default async function RoutePage(props: PageParams<{}>) {
   return (
@@ -20,12 +21,15 @@ export default async function RoutePage(props: PageParams<{}>) {
           href="/articles"
           variant="article"
         />
+        <Separator />
+
         <Groupe
           data={lessons}
           title="Leçons"
           href="/lessons"
           variant="lesson"
         />
+        <Separator />
         <Groupe
           data={formations}
           title="Formations"

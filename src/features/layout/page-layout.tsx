@@ -19,7 +19,7 @@ export const PageAside = ({ children }: PropsWithChildren) => {
 export const PageContent = ({
   children,
   className,
-}: PropsWithChildren<{ className: string }>) => {
+}: PropsWithChildren<{ className?: string }>) => {
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
