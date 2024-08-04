@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "@/lib/auth";
+import { signIn, signOut } from "@/features/auth/auth";
 import { db } from "@/lib/db";
 import { actionClient } from "@/lib/safe-actions";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";

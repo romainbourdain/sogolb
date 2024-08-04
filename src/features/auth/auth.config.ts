@@ -1,4 +1,5 @@
 import { getUserByEmailAction } from "@/actions/auth.action";
+import { env } from "@/lib/env";
 import { LoginSchema } from "@/schemas/auth.schema";
 import bcrypt from "bcryptjs";
 import type { NextAuthConfig } from "next-auth";
@@ -6,7 +7,6 @@ import { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-import { env } from "./env";
 
 class InvalidLoginError extends CredentialsSignin {
   message = "Invalid identifier or password";

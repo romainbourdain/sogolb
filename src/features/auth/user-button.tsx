@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { auth } from "@/lib/auth";
+import { auth } from "@/features/auth/auth";
 import { SignInButton } from "./sign-in-button";
 import { UserDropdown } from "./user-dropdown";
 

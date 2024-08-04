@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, User } from "lucide-react";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
 
@@ -18,6 +18,12 @@ export const UserDropdown = ({ children }: UserDropdownProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
+        <Link href="/home">
+          <DropdownMenuItem>
+            <LayoutDashboard size={16} className="mr-2" />
+            Tableau de bord
+          </DropdownMenuItem>
+        </Link>
         <Link href="/profile">
           <DropdownMenuItem>
             <User size={16} className="mr-2" />

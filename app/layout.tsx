@@ -1,10 +1,16 @@
 import { config } from "@/config";
+import { NextTopLoader } from "@/features/layout/top-loader";
 import { cn } from "@/lib/utils";
 import type { LayoutParams } from "@/types/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Provider } from "./provider";
+
+export const metadata: Metadata = {
+  title: config.title,
+  description: config.description,
+};
 
 const marsel = localFont({
   src: [
@@ -26,19 +32,17 @@ const marsel = localFont({
   ],
 });
 
-export const metadata: Metadata = {
-  title: config.title,
-  description: config.description,
-};
-
 export default async function RootLayout({ children }: LayoutParams<{}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" {...config} />
       </head>
-      <body className={cn("min-h-screen h-full", marsel.className)}>
-        <Provider>{children}</Provider>
+      <body className={cn("h-screen w-full", marsel.className)}>
+        <Provider>
+          <NextTopLoader />
+          {children}
+        </Provider>
       </body>
     </html>
   );

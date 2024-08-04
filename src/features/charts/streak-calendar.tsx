@@ -12,7 +12,6 @@ import {
   subDays,
   subMonths,
 } from "date-fns";
-
 const StreakCalendar = ({
   className,
   activity,

@@ -1,23 +1,21 @@
-import { UserButton } from "../auth/user-button";
-import { ThemeToggle } from "../theme/theme-toggle";
-import { Logo } from "./logo";
-import { MobileSidebar } from "./sidebar/mobile-sidebar";
+import { UserButton } from "@/features/auth/user-button";
+import { Logo } from "@/features/layout/logo";
+import { ThemeToggle } from "@/features/theme/theme-toggle";
 
 export type NavbarProps = {
-  showUserButton?: boolean;
-  showSidebarButton?: boolean;
+  hideUserButton?: boolean;
+  logoHref?: string;
 };
 
-export const Navbar = ({ showUserButton, showSidebarButton }: NavbarProps) => {
+export const Navbar = ({ hideUserButton }: NavbarProps) => {
   return (
     <nav className="col-span-2 flex w-full items-center justify-between gap-2 border-b px-5 py-3">
       <div className="flex items-center gap-2">
-        {showSidebarButton && <MobileSidebar />}
-        <Logo />
+        <Logo href="/" />
       </div>
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        {showUserButton && <UserButton />}
+        {!hideUserButton && <UserButton />}
       </div>
     </nav>
   );

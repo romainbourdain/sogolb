@@ -5,12 +5,11 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
 import { Typography } from "@/components/ui/typography";
 import { articles } from "@/data/resources";
+import { SearchBar } from "@/features/layout/searchbar";
 import { ResourceCard } from "@/features/resource/resource-card";
 import type { PageParams } from "@/types/next";
-import { Search } from "lucide-react";
 
 export default async function RoutePage(props: PageParams<{}>) {
   return (
@@ -28,7 +27,6 @@ export default async function RoutePage(props: PageParams<{}>) {
           />
         </div>
       </div>
-
       {/* Articles */}
       <div className="mt-10">
         <Typography variant="h2">Articles</Typography>
