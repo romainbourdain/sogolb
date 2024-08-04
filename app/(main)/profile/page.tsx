@@ -62,21 +62,20 @@ export default async function RoutePage(props: PageParams<{}>) {
           </Button>
         </div>
 
-
         {/* More informations */}
         <div className="mx-5 flex justify-between">
           {/* Names */}
           <div>
-            <div className="flex items-center justify-center space-x-3">
-              <Typography variant="h2" className="mb-0">
+            <div className="flex items-baseline justify-center space-x-3">
+              <Typography variant="h2" className="flex items-center">
                 {profile.name}
               </Typography>
               {/* Badges */}
-              <div className="my-3 flex items-center justify-center space-x-1">
+              <div className="flex h-full items-center justify-center space-x-1">
                 {profile.badges.map((badge) => (
                   <TooltipProvider key={badge.id} delayDuration={100}>
                     <Tooltip>
-                      <TooltipTrigger>
+                      <TooltipTrigger asChild>
                         <Image
                           src={badge.image}
                           alt={badge.name}

@@ -40,7 +40,7 @@ export const ResourceCard = ({ title, variant }: ResourceCardProps) => {
       </div>
 
       {/* Title */}
-      <Typography variant="h2" className="text-md font-semibold text-white">
+      <Typography variant="h3" className="text-md font-semibold text-white">
         {title}
       </Typography>
     </div>

@@ -1,4 +1,3 @@
-import { PageLayout } from "@/components/tailwind/page-layout";
 import { Typography } from "@/components/ui/typography";
 import { auth } from "@/features/auth/auth";
 import { StatsChart } from "@/features/charts/stats-charts";
@@ -6,7 +5,6 @@ import {
   PageAside,
   PageContainer,
   PageContent,
-
 } from "@/features/layout/page-layout";
 import type { PageParams } from "@/types/next";
 
@@ -26,6 +24,6 @@ export default async function RoutePage(props: PageParams<{}>) {
         <Typography variant="h2">Compétences</Typography>
         <StatsChart />
       </PageAside>
-    </PageLayout>
+    </PageContainer>
   );
 }
