@@ -107,15 +107,59 @@ const createFakeBadges = async () => {
   });
 };
 
+const createFakeEvents = async () => {
+  await prisma.event.createMany({
+    data: [
+      {
+        id: "1",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-01"),
+        userId: "1",
+      },
+      {
+        id: "2",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-02"),
+        userId: "1",
+      },
+      {
+        id: "3",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-03"),
+        userId: "1",
+      },
+      {
+        id: "4",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-04"),
+        userId: "1",
+      },
+      {
+        id: "5",
+        title: "Cocorico, je suis un albatros",
+        description: "Cocorico, je suis un albatros. ".repeat(3),
+        date: new Date("2024-03-05"),
+        userId: "1",
+      },
+    ],
+  });
+};
+
 async function main() {
   // Delete all data
   await prisma.user.deleteMany();
+  await prisma.event.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.badge.deleteMany();
 
   // Populate with fake data
   await createFakeBadges();
   await createFakeUser();
+  await createFakeEvents();
   await createFakeActivity();
 }
 
