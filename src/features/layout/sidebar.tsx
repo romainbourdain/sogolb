@@ -12,6 +12,7 @@ import {
   GraduationCap,
   Home,
   Newspaper,
+  PlusCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,8 +47,8 @@ const sidebarLinks = [
 export const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="h-full w-56 bg-card max-md:hidden">
-      <ScrollArea className="h-full">
+    <aside className="flex h-full w-56 flex-col bg-card max-md:hidden">
+      <ScrollArea className="flex-1">
         <div className="space-y-6 px-3 py-4">
           <div className="px-2">
             <Logo href="/home" />
@@ -73,6 +74,15 @@ export const Sidebar = () => {
           ))}
         </div>
       </ScrollArea>
+      <div className="w-full p-2">
+        <Link
+          href="/publish"
+          className={cn(buttonVariants(), "w-full flex items-center gap-2")}
+        >
+          <PlusCircle />
+          Publier
+        </Link>
+      </div>
     </aside>
   );
 };
