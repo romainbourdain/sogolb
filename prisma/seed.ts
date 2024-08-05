@@ -145,6 +145,111 @@ const createFakeEvents = async () => {
         type: EventType.COMMENTED,
         userId: "1",
       },
+      {
+        id: "6",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "7",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "8",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "9",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "10",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "11",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "12",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "13",
+        description:
+          "L'utilisateur a commenté sur l'article 'Les meilleures pratiques de JavaScript'.",
+        type: EventType.COMMENTED,
+        userId: "1",
+      },
+      {
+        id: "14",
+        description:
+          "L'utilisateur a complété la leçon 'Introduction à React'.",
+        type: EventType.LESSON_COMPLETED,
+        userId: "1",
+      },
+      {
+        id: "15",
+        description:
+          "L'utilisateur a aimé l'article 'CSS avancé : Flexbox et Grid'.",
+        type: EventType.LIKED_ARTICLE,
+        userId: "1",
+      },
+      {
+        id: "16",
+        description:
+          "L'utilisateur a répondu à un commentaire sur l'article 'Node.js pour les débutants'.",
+        type: EventType.COMMENTED,
+        userId: "1",
+      },
+      {
+        id: "17",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "18",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "19",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
+      {
+        id: "20",
+        description:
+          "L'utilisateur a publié un nouvel article sur le développement web moderne.",
+        type: EventType.ARTICLE_WRITTEN,
+        userId: "1",
+      },
     ],
   });
 };

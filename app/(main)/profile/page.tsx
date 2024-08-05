@@ -125,7 +125,7 @@ export default async function RoutePage(props: PageParams<{}>) {
       {/* Timeline */}
       <div className="mx-5">
         <Typography variant="h2" className="mb-4">Activité récente</Typography>
-        <LazyProfileEvents events={user.events} profilePicture={user.image} profileName={user.name} />
+        <LazyProfileEvents initialEvents={user.events} user={user} />
       </div>
     </PageLayout>
   );

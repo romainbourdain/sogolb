@@ -11,8 +11,7 @@ export type ProfileEventsProps = {
   profileName: User["name"];
 }
 
-const ProfileEvents = ({ events, profilePicture, profileName
-}: ProfileEventsProps) => {
+const ProfileEvents = ({ events, profilePicture, profileName }: ProfileEventsProps) => {
   return (
     <div className="space-y-2">
       {

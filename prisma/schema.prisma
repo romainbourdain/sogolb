@@ -13,8 +13,8 @@ model User {
   // TODO: add username (to tag users in comments) = nme: lois gallaud (username: lois.glld)
   email         String          @unique
   emailVerified DateTime?
-  image         String?
-  banner        String?
+  image         String
+  banner        String
   bio           String?  
   accounts      Account[]
   sessions      Session[]

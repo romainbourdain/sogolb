@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 export const defaultBanner =
   "https://images.unsplash.com/photo-1552265129-2ac1a82da59e?q=80&w=3873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
+export const defaultProfilePicture =
+  "https://api.dicebear.com/8.x/lorelei-neutral/png?seed=joe";
+
 export const marsel = localFont({
   src: [
     {
