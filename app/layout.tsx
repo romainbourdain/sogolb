@@ -38,7 +38,8 @@ export default async function RootLayout({ children }: LayoutParams<{}>) {
       <head>
         <link rel="icon" {...config} />
       </head>
-      <body className={cn("h-screen w-full", marsel.className)}>
+      {/* <body className={cn("h-screen w-full", marsel.className)}> */}
+      <body className={cn("h-screen w-full font-poppins")}>
         <Provider>
           <NextTopLoader />
           {children}
